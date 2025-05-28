@@ -1,15 +1,260 @@
-= Break-fix activity
+= Troubleshooting the rulebook using CURL
+:page-attribute: experimental
 
-This section presents a scenario based on a real customer issue.
+[#in_this_bfx]
+== What is in this break-fix section
 
-. Read the scenario and success criteria.
-. Follow any instructions provided for setting up your lab environment.
-. Resolve the issue as simulated in your lab environment.
-. After resolving the issue, run the grading script and submit the completion code as prompted.
+In this section, you will explore the basic artifacts of Event-Driven Ansible (Automation Decisions), troubleshoot the error encountered while executing `ansible-rulebook`, and verify functionality after resolving the issue.
+
+What is `ansible-rulebook`? The `ansible-rulebook` command is similar to `ansible-playbook`, but more oriented to "if-then" scenarios.
+
+A rulebook consists of three main components:
+
+* *Sources* define which event source we will use. These sources come from source plugins which have been built to accommodate common use cases. Some of the source plugins that are currently available include webhooks, Kafka, Azure service bus, file changes, and alertmanager.
+* *Rules* define conditionals we will try to match from the event source. Should the condition be met, then we can trigger an action.
+* *Actions* trigger what need to happen should a condition be met. Some of the current actions are: __run_playbook__, __run_module__, __set_fact__, __post_event__, and __debug__.
 
 
-**You must successfully complete this section to receive a passing grade for this module.**
+Follow the below steps to proceed with the activity:
+
+. From *bastion*, access the *node1* instance via SSH.
++
+[source,sh,role=execute]
+----
+ssh node1
+----
++
+.Output
+----
+[lab-user@bastion ~]$ ssh node1
+Last login: Fri Nov 29 06:30:21 2024 from 192.168.0.33
+[ec2-user@node1 ~]$ 
+----
 
 
-If you exhaust your experience and resources, and you're unable to solve the issue on your own, use the guided solution to step through one possible solution, with tips for addressing similar issues.
+. Navigate to the _01-lab_ directory.
++
+[source,sh,role=execute]
+----
+cd 01-lab
+ls
+----
++
+.Output
+----
+[ec2-user@node1 ~]$ cd 01-lab/
+[ec2-user@node1 01-lab]$ ls
+hello-rh1.yml  inventory.yml  webhook-example.yml
+[ec2-user@node1 01-lab]$ 
+----
 
+. Check the rulebook, playbook, and inventory files in the lab directory and try to understand their purpose.
++
+[source,sh,role=execute]
+----
+less webhook-example.yml
+less hello-rh1.yml
+less inventory.yml
+----
+
+. From the lab's directory in the terminal, run the `ansible-rulebook` command as shown below.
++
+[source,sh,role=execute]
+----
+ansible-rulebook --rulebook webhook-example.yml -i inventory.yml --verbose  --print-events
+----
++
+.Output
+----
+[ec2-user@node1 01-lab]$ ansible-rulebook --rulebook webhook-example.yml -i inventory.yml --verbose  --print-events
+2024-11-29 09:10:42,817 - ansible_rulebook.app - INFO - Starting sources
+2024-11-29 09:10:42,818 - ansible_rulebook.app - INFO - Starting rules
+
+. . . 
+
+2024-11-29 09:10:44,543 - ansible_rulebook.engine - ERROR - Source error Could not find source plugin for ansible.eda.webhook
+2024-11-29 09:10:44,543 - ansible_rulebook.engine - ERROR - Shutting down source: ansible.eda.webhook error : Could not find source plugin for ansible.eda.webhook
+2024-11-29 09:10:44,546 - ansible_rulebook.engine - INFO - Waiting for all ruleset tasks to end
+
+. . . 
+
+2024-11-29 09:10:44,646 - ansible_rulebook.engine - INFO - Cancelling all ruleset tasks
+2024-11-29 09:10:44,646 - ansible_rulebook.app - INFO - Cancelling event source tasks
+2024-11-29 09:10:44,653 - ansible_rulebook.app - ERROR - Could not find source plugin for ansible.eda.webhook
+2024-11-29 09:10:44,653 - ansible_rulebook.app - INFO - Main complete
+2024-11-29 09:10:44,655 - ansible_rulebook.cli - ERROR - Terminating One of the source plugins failed
+[ec2-user@node1 01-lab]$
+----
++
+NOTE: This is your first troubleshooting task: *"ERROR - Terminating One of the source plugins failed."*  
+Please resolve this issue before proceeding to the next step.
++
+NOTE: If the `ansible-rulebook` command is still running, press kbd:[Ctrl+C] in the `node1` terminal and stop it. 
+
+
+. After fixing the above issue, run the `ansible-rulebook` command again to verify the fix.  
++
+[source,sh,role=execute]
+----
+ansible-rulebook --rulebook webhook-example.yml -i inventory.yml --verbose  --print-events
+----
++
+.Output
+----
+. . . 
+2024-12-16 11:08:32,462 - ansible_rulebook.engine - INFO - Waiting for all ruleset tasks to end
+2024-12-16 11:08:32,463 - ansible_rulebook.rule_set_runner - INFO - Waiting for actions on events from Listen for events on a webhook
+2024-12-16 11:08:32,463 - ansible_rulebook.rule_set_runner - INFO - Waiting for events, ruleset: Listen for events on a webhook
+
+----
+
+. With the `ansible-rulebook` running on the `node1` terminal, access the second terminal and run the `curl` command from `bastion` host to proceed.
++
+[source,sh,role=execute]
+----
+curl -H 'Content-Type: application/json' -d '{"event_name:" "Hello" }' node1:5000/endpoint
+----
++
+.Output
+----
+Invalid JSON payload
+----
++
+NOTE: WARNING - Wrong body request: failed to decode JSON payload
++
+NOTE: Attempt to fix the error generated by the *curl* command. 
++
+NOTE: If you encounter the error *"curl: (7) Failed to connect to node1 port 5000: Connection refused"*, this means that the `ansible-rulebook` command is not running on **node1**.
+
+
+This concludes your first troubleshooting activity. Please press kbd:[Ctrl-C] to exit the `ansible-rulebook` on **node1** and proceed to the next activity.
+
+'''
+
+**PAUSE**
+
+'''
+
+== Before moving ahead 
+
+=== Please take a moment to solve the challenge on your own.
+
+**The real value of this activity lies in your effort to troubleshoot independently.**
+
+**Once you have tried, continue to the next section for guided steps to verify your approach or learn an alternate solution.**
+
+'''
+
+**CONTINUE**
+
+'''
+
+[#guided_solution]
+== Guided solution
+
+. Note the errors related to the Ansible EDA plugin in the output generated by the `ansible-rulebook` command.
++
+.Output
+----
+ERROR - Could not find source plugin for ansible.eda.webhook
+...
+ERROR - Terminating One of the source plugins failed
+----
+
+. Install the Ansible Galaxy collection _ansible.eda_.
++
+[source,sh,role=execute]
+----
+ansible-galaxy collection install ansible.eda
+----
++
+.Output
+----
+[ec2-user@node1 01-lab]$ ansible-galaxy collection install ansible.eda
+Starting galaxy collection install process
+Process install dependency map
+Starting collection install process
+Downloading https://galaxy.ansible.com/api/v3/plugin/ansible/content/published/collections/artifacts/ansible-eda-2.2.0.tar.gz to /home/ec2-user/.ansible/tmp/ansible-local-31890ne19swmy/tmp9ok98ogw/ansible-eda-2.2.0-r410por3
+Installing 'ansible.eda:2.2.0' to '/home/ec2-user/.ansible/collections/ansible_collections/ansible/eda'
+ansible.eda:2.2.0 was installed successfully
+[ec2-user@node1 01-lab]$ 
+----
+
+. Run the `ansible-rulebook` command again.
++
+[source,sh,role=execute]
+----
+ansible-rulebook --rulebook webhook-example.yml -i inventory.yml --verbose  --print-events
+----
++
+.Output
+----
+[ec2-user@node1 01-lab]$ ansible-rulebook --rulebook webhook-example.yml -i inventory.yml --verbose  --print-events
+2024-11-29 09:18:25,916 - ansible_rulebook.app - INFO - Starting sources
+2024-11-29 09:18:25,916 - ansible_rulebook.app - INFO - Starting rules
+2024-11-29 09:18:25,917 - drools.ruleset - INFO - Using jar: /usr/lib/python3.9/site-packages/drools/jars/drools-ansible-rulebook-integration-runtime-1.0.6.Final-redhat-00001.jar
+2024-11-29 09:18:27 088 [main] INFO org.drools.ansible.rulebook.integration.api.rulesengine.AbstractRulesEvaluator - Start automatic pseudo clock with a tick every 100 milliseconds
+2024-11-29 09:18:27,116 - ansible_rulebook.engine - INFO - load source ansible.eda.webhook
+2024-11-29 09:18:27,863 - ansible_rulebook.engine - INFO - loading source filter eda.builtin.insert_meta_info
+2024-11-29 09:18:28,601 - ansible_rulebook.engine - INFO - Waiting for all ruleset tasks to end
+2024-11-29 09:18:28 601 [drools-async-evaluator-thread] INFO org.drools.ansible.rulebook.integration.api.io.RuleExecutorChannel - Async channel connected
+2024-11-29 09:18:28,602 - ansible_rulebook.rule_set_runner - INFO - Waiting for actions on events from Listen for events on a webhook
+2024-11-29 09:18:28,602 - ansible_rulebook.rule_set_runner - INFO - Waiting for events, ruleset: Listen for events on a webhook
+
+----
++
+Note that the command does not error out and waits to listen for events on the webhook.
+
+. In another terminal, run the `curl` command from the bastion host. 
++
+[source,sh,role=execute]
+----
+curl -H 'Content-Type: application/json' -d '{"event_name": "Hello" }' node1:5000/endpoint
+----
+NOTE: Notice how the semicolon was originally on the inside of the double quotation mark, but in the command above it is on the outside of it.
+
+. Go back to the terminal where the `ansible-rulebook` command was running and observe the output generated.
++
+.Output
+----
+
+. . .
+
+** 2024-11-29 09:22:07.667842 [received event] ******************************************************************************************************
+Ruleset: Listen for events on a webhook
+Event:
+{'meta': {'endpoint': 'endpoint',
+          'headers': {'Accept': '*/*',
+                      'Content-Length': '24',
+                      'Content-Type': 'application/json',
+                      'Host': 'node1:5000',
+                      'User-Agent': 'curl/7.76.1'},
+          'received_at': '2024-11-29T09:22:07.666975Z',
+          'source': {'name': 'ansible.eda.webhook',
+                     'type': 'ansible.eda.webhook'},
+          'uuid': '5a9303b6-4863-4be7-b0da-7367afc21d6f'},
+ 'payload': {'event_name': 'Hello'}}
+*****************************************************************************************************************************************************
+2024-11-29 09:22:07 672 [main] INFO org.drools.ansible.rulebook.integration.api.rulesengine.MemoryMonitorUtil - Memory occupation threshold set to 90%
+2024-11-29 09:22:07 672 [main] INFO org.drools.ansible.rulebook.integration.api.rulesengine.MemoryMonitorUtil - Memory check event count threshold set to 64
+2024-11-29 09:22:07 672 [main] INFO org.drools.ansible.rulebook.integration.api.rulesengine.MemoryMonitorUtil - Exit above memory occupation threshold set to false
+
+PLAY [localhost] ***************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [localhost]
+
+TASK [debug] *******************************************************************
+ok: [localhost] => {
+    "msg": "Hello RH1"
+}
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2024-11-29 09:22:11,026 - ansible_rulebook.action.runner - INFO - Ansible runner Queue task cancelled
+2024-11-29 09:22:11,027 - ansible_rulebook.action.run_playbook - INFO - Ansible runner rc: 0, status: successful
+----
++
+Observe that Event-Driven captured the *Hello* event as mentioned in the rulebook and executed the playbook to print the *Hello RH1* message.
+
+Press kbd:[Ctrl-C] to exit the `ansible-rulebook` on **node1**.

@@ -1,35 +1,207 @@
-= Check your work
+= Troubleshoot rulebook using CURL and extra_vars
 
-== Follow below steps in the lab to check your work
+[#in_this_bfx]
+== What is in this break-fix
 
-FIXME: Add the instructions to be followed in the lab environment to make sure the problem has been resolved. You may chose to remove this block if grading script is provided in the lab to check the work.
+In this section, you will troubleshoot SSH authentication and user configuration issues in an Event-Driven Ansible (Automation Decisions) workflow while exploring the use of `extra_vars` in the rulebook.
 
-== Check your work using the grading script
-
-After you have resolved the issue and met the success criteria, login to `FIXME` system as `FIXME` user and run the grading script as shown here to check your work:
-
-[source,bash,role=execute]
+. SSH into the *node1* instance from the bastion host.
++
+[source,sh,role=execute]
 ----
-break-fix-script grade
+ssh node1
 ----
-
-.Sample output
++
+.Output
 ----
-[root@classroom ~]# break-fix-script grade
-Initiating break-fix-script with option grade
-Grading.  Please wait.
-Success.
-COMPLETION CODE: <check your output for this value>
-Completed break-fix-script with option grade successfully
+[lab-user@bastion ~]$ ssh node1
+Last login: Fri Nov 29 06:30:21 2024 from 192.168.0.33
+[ec2-user@node1 ~]$ 
 ----
 
-FIXME: Remove the below block if no grading script is provided to check the work in the break-fix activity. In this case make sure you use the above block to provide step-by-step instructions learner can follow to check their work.
 
-== Submit the completion code
+. Navigate to the _02-lab_ directory.  
++
+[source,sh,role=execute]
+----
+cd 02-lab
+ls
+----
++
+.Output
+----
+[ec2-user@node1 ~]$ cd 02-lab
+[ec2-user@node1 02-lab]$ ls
+hello-rh1.yml  inventory.yml  webhook-example.yml
+[ec2-user@node1 02-lab]$ 
+----
 
-NOTE: Skip this if not applicable for you.
+. Review the rulebook, playbook, and inventory files in the lab directory and try to understand their purpose.
++
+[source,sh,role=execute]
+----
+less webhook-example.yml
+less hello-rh1.yml
+less inventory.yml
+----
 
-- For RedHat internal audience: Submit that completion code https://link-to-appropriate-lms.com[here,window=_blank] to receive a grade for this training
-- For RedHat partners: Submit that completion code https://link-to-appropriate-lms.com[here,window=_blank] to receive a grade for this training
+. Run the `ansible-rulebook` command from the directory _02-lab/_ in the terminal as shown below.  
++
+[source,sh,role=execute]
+----
+ansible-rulebook --rulebook webhook-example.yml -i inventory.yml --verbose  --print-events
+----
++
+.Output
+----
+[ec2-user@node1 02-lab]$ ansible-rulebook --rulebook webhook-example.yml -i inventory.yml --verbose  --print-events
+2024-11-29 15:24:45,039 - ansible_rulebook.app - INFO - Starting sources
+2024-11-29 15:24:45,039 - ansible_rulebook.app - INFO - Starting rules
+. . . 
+2024-12-17 16:31:17,566 - ansible_rulebook.engine - INFO - Waiting for all ruleset tasks to end
+2024-12-17 16:31:17 566 [drools-async-evaluator-thread] INFO org.drools.ansible.rulebook.integration.api.io.RuleExecutorChannel - Async channel connected
+2024-12-17 16:31:17,567 - ansible_rulebook.rule_set_runner - INFO - Waiting for actions on events from Listen for events on a webhook
+2024-12-17 16:31:17,567 - ansible_rulebook.rule_set_runner - INFO - Waiting for events, ruleset: Listen for events on a webhook
+----
 
-FIXME: Change the links in the above lines to the link for appropriate audience specific LMS where learner can provide completion code. Remove this block if submitting completion is not applicable.
+. Open another terminal on the bastion node and run the `curl` command as specified.  
++
+[source,sh,role=execute]
+----
+curl -H 'Content-Type: application/json' -d '{"event_name": "Hello", "host_host": "node1" }' node1:5000/endpoint
+----
+
+. In the terminal where you ran the `ansible-rulebook` command, observe the output.  
++
+.Output
+----
+2024-11-29 15:26:18,350 - aiohttp.access - INFO - 192.168.0.18 [29/Nov/2024:15:26:18 +0000] "POST /endpoint HTTP/1.1" 200 158 "-" "curl/7.76.1"
+
+** 2024-11-29 15:26:18.350626 [received event] 
+
+. . . 
+
+PLAY [Install tcpdump] ***********************************************
+
+TASK [Gathering Facts] *********************************************************
+fatal: [node1]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: root@node1: Permission denied (publickey,gssapi-keyex,gssapi-with-mic).", "unreachable": true}
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+node1                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+
+. . . 
+
+2024-11-29 15:26:21,603 - ansible_rulebook.action.run_playbook - ERROR - 
+PLAY [create env] **************************************************************
+
+. . . 
+
+PLAY [Install tcpdump] ***********************************************
+
+TASK [Gathering Facts] *********************************************************
+fatal: [node1]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: root@node1: Permission denied (publickey,gssapi-keyex,gssapi-with-mic).", "unreachable": true}
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+node1                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+----
++
+NOTE: "Failed to connect to the host via ssh:" You will need to use the access key of the bastion host and the lab-user user."
+
+. Break out of the rulebook by kbd:[Ctrl-C] and note the error generated after the event is captured by the `ansible-rulebook` command and try to resolve it.
+
+
+'''
+
+**PAUSE**
+
+'''
+
+== Before moving ahead 
+
+=== Please take a moment to solve the challenge on your own.
+
+**The real value of this activity lies in your effort to troubleshoot independently.**
+
+**Once you have tried, continue to the next section for guided steps to verify your approach or learn an alternate solution.**
+
+'''
+
+**CONTINUE**
+
+'''
+
+
+[#guided_solution]
+== Guided solution
+
+. Note the error generated after the event is captured by the `ansible-rulebook` command
++
+.Output
+----
+Failed to connect to the host via ssh: root@node1: Permission denied (publickey,gssapi-keyex,gssapi-with-mic).
+----
++
+This indicates a failure to connect to the node by SSH.
+
+. Copy the SSH config and key files from the `lab-user` on the *bastion* to the `ec2-user` on *node1* to enable passwordless SSH authentication from *node1* to itself.  
++
+[source,sh,role=execute]
+----
+cd ~/.ssh
+ls
+scp config *.p* ec2-user@node1:.ssh/
+----
++
+.Output
+----
+[lab-user@bastion ~]$ cd .ssh/
+[lab-user@bastion .ssh]$ ls
+authorized_keys  config  known_hosts  known_hosts.old  xjvz8key.pem  xjvz8key.pub
+[lab-user@bastion .ssh]$ 
+[lab-user@bastion .ssh]$ scp config *.p* ec2-user@node1:.ssh/
+config                                                                                                             100%  216   304.2KB/s   00:00    
+xjvz8key.pem                                                                                                       100% 2602     5.3MB/s   00:00    
+xjvz8key.pub                                                                                                       100%  552   353.7KB/s   00:00    
+[lab-user@bastion .ssh]$ 
+----
+
+. Login back to *node1* and try to SSH to itself.
++
+.Output
+----
+[lab-user@bastion .ssh]$ ssh node1
+Last login: Fri Nov 29 16:11:55 2024 from 192.168.0.18
+[ec2-user@node1 ~]$ 
+[ec2-user@node1 ~]$ ssh node1
+Last login: Fri Nov 29 16:19:17 2024 from 192.168.0.18
+[ec2-user@node1 ~]$ 
+----
+
+. Re-run the rulebook if it is not already running and send the event using the `curl` command as earlier.
++
+.Output
+----
+TASK [Gathering Facts] *********************************************************
+fatal: [node1]: UNREACHABLE! => {"changed": false, "msg": "Failed to create temporary directory. In some cases, you may have been able to authenticate and did not have permissions on the target directory. Consider changing the remote tmp path in ansible.cfg to a path rooted in \"/tmp\", for more error information use -vvv. Failed command was: ( umask 77 && mkdir -p \"` echo Please login as the user \"ec2-user\" rather than the user \"root\"./.ansible/tmp `\"&& mkdir \"` echo Please login as the user \"ec2-user\" rather than the user \"root\"./.ansible/tmp/ansible-tmp-1732897310.5139034-2830-144138432594257 `\" && echo ansible-tmp-1732897310.5139034-2830-144138432594257=\"` echo Please login as the user \"ec2-user\" rather than the user \"root\"./.ansible/tmp/ansible-tmp-1732897310.5139034-2830-144138432594257 `\" ), exited with result 142, stdout output: Please login as the user \"ec2-user\" rather than the user \"root\".\n\n", "unreachable": true}
+----
+
+. Note the new error captured this time:
++
+----
+Please login as the user \"ec2-user\" rather than the user \"root\"
+----
+
+. Ensure you are in the _02-lab_ directory on *node1*.
+
+. Edit the _hello-rh1.yml_ playbook and change `remote_user: root` to `remote_user: ec2-user`.
++
+[source,bash]
+----
+vi hello-rh1.yml
+----
+
+. While the rulebook is still running on *node1*, send the event from the *bastion* host again.
+
+. Note that the playbook runs successfully this time, and the `Install tcpdump` task is executed. kbd:[Ctrl-C] to exit the rulebook on node1 and continue to the next section.

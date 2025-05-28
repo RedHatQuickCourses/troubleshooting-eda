@@ -1,0 +1,314 @@
+= Let's configure Event-Driven and Ansible Automation Platform to fix issues coming from Zabbix
+
+[#in_this_bfx]
+== What is in this break-fix
+
+In this section, we will configure Zabbix to monitor *node1*. On *node1*, Apache is running. When Apache stops working, Zabbix sends an event to Event-Driven Ansible (Automation Decisions) and runs a job template to solve the problem.
+== Add the playbook and rulebook to git
+
+Add the files inside this folder to git.
+
+.Output
+----
+cd 05-lab/
+git clone git@server.example.com:root/rh1-ansible-eda-vars-zabbix.git
+cp -rf project-http rulebooks rh1-ansible-eda-vars-zabbix/
+cd rh1-ansible-eda-vars-zabbix/
+git add . ; git commit -m add ; git push
+----
+
+[source,bash]
+----
+[ec2-user@node1 ~]$ cd 05-lab/
+[ec2-user@node1 05-lab]$ git clone git@server.example.com:root/rh1-ansible-eda-vars-zabbix.git
+[ec2-user@node1 05-lab]$ cp -rf project-http rulebooks rh1-ansible-eda-vars-zabbix/
+[ec2-user@node1 05-lab]$ cd rh1-ansible-eda-vars-zabbix/
+[ec2-user@node1 rh1-ansible-eda-vars-zabbix]$
+[ec2-user@node1 05-lab]$ git add . ; git commit -m add ; git push
+----
+
+In Ansible Automation Platform, we will create the _rh1-ansible-eda-vars-zabbix_ project in Automation Decisions:
+
+
+[source,bash]
+----
+
+Name rh1-ansible-eda-vars-zabbix
+Organization Default
+Source control type Git
+Source control URL https://server.example.com/root/rh1-ansible-eda-vars-zabbix.git
+Source control credential: gitlab
+Options
+uncheck box Verify SSL
+----
+
+image::lab005-001.jpg[lab005-001,100%,100%,link=self,window=_blank]
+
+Make sure the project syncs successfully:
+
+image::lab005-000.jpg[lab005-000,100%,100%,link=self,window=_blank]
+
+
+After creating the project in Automation Decision, create the rulebook.
+
+Click btn:[Create rulebook activation]:
+
+
+image::lab005-004.jpg[lab005-004,100%,100%,link=self,window=_blank]
+
+Add the following information:
+
+[source,bash]
+----
+Name: rh1-ansible-eda-vars-zabbix
+Organization: Default
+Project: rh1-ansible-eda-vars-zabbix
+Rulebook: webhook-zabbix.yml
+Credential: AAP
+Decision Enviroment: Default Decision Enviroment
+Log Level: Debug
+Now click on Create rulebook activation
+----
+
+image::lab005-005.jpg[lab005-005,100%,100%,link=self,window=_blank]
+
+NOTE: The _webhook-zabbix.yml_ file will not show in Event-Driven. Fix this before moving on.
+
+Now, click btn:[Create rulebook activation].
+
+Validate if the rulebook is running.
+
+Details of how we created the Rulebook:
+
+image::lab005-008.jpg[lab005-008,100%,100%,link=self,window=_blank]
+
+Click btn:[History] to see the issue:
+
+image::lab005-009.jpg[lab005-009,100%,100%,link=self,window=_blank]
+
+The rulebook will fail to start due to a port conflict. Stop the _eda-debug_ rulebook.
+
+Click on the running rulebook action in blue:
+
+image::lab005-010.jpg[lab005-010,100%,100%,link=self,window=_blank]
+
+Check the box:
+Yes, I confirm that I want to disable these rulebook activations.
+
+image::lab005-011.jpg[lab005-011,100%,100%,link=self,window=_blank]
+
+Click btn:[Disable rulebook activations]
+
+image::lab005-012.jpg[lab005-012,100%,100%,link=self,window=_blank]
+
+Disable Rulebook activation successfully:
+
+image::lab005-013.jpg[lab005-013,100%,100%,link=self,window=_blank]
+
+
+NOTE: The big problem is creating the correct regular expression for the payload to run.
+
+Now it's time to edit the _05-lab/rh1-ansible-eda-vars-zabbix/rulebooks/webhook-zabbix.yml_ file and find the correct expression.
+
+
+[source,yml]
+----
+---
+- name: Listen for events on a webhook
+  hosts: all
+  sources:
+    - ansible.eda.webhook:
+        host: 0.0.0.0
+        port: 5000
+  rules:
+    - name: Zabbix Apache 
+      condition: event.payload.event_name == "Apache: Service is down"
+      action:
+        run_job_template:
+          name: projeto-http
+          organization: Default
+          job_args:
+            extra_vars:
+              hosts_update: "{{ event.payload.host_host }}"
+
+----
+
+You only need to edit this line:
+
+[source,bash]
+----
+condition: event.payload.event_name == "Apache: Service is down"
+----
+
+NOTE: Your rulebook will not start due to another error. Try to resolve it.
+
+
+== Let's now configure Automation Execution.
+
+Let's create the _rh1-ansible-eda-vars-zabbix_ project:
+
+[source,bash]
+----
+name: rh1-ansible-eda-vars-zabbix
+Organization: Default
+Source Control type: git
+Source control URL: git@server.example.com:root/rh1-ansible-eda-vars-zabbix.git
+Source control Credential: gitlab
+Check box: 
+    Clean, 
+    Update revision on launch 
+    Delete
+----
+
+image::lab005-022.png[lab005-022,100%,100%,link=self,window=_blank]
+
+Click btn:[Create project].
+
+Next, create the **project-http** inventory containing only the host *localhost*:
+
+[source,bash]
+----
+Name: project-http
+Organization: Default
+----
+
+
+image::lab005-015.jpg[lab005-015,100%,100%,link=self,window=_blank]
+
+Click btn:[Create Host]:
+
+image::lab005-016.jpg[lab005-016,100%,100%,link=self,window=_blank]
+
+Now add the host *localhost*:
+
+[source,bash]
+----
+Name: localhost
+----
+
+image::lab005-017.jpg[lab005-017,100%,100%,link=self,window=_blank]
+
+Next click btn:[Create Host]:
+
+Create the job template:
+In Automation Execution section in menu:Templates[Create Template > Create Job Template]:
+
+image::lab005-014.jpg[lab005-014,100%,100%,link=self,window=_blank]
+
+
+[source,bash]
+----
+Name: project-http
+Project: rh1-ansible-eda-vars-zabbix
+Playbook: project-http/playbook.yml
+Credentials: ec2-user
+Inventory: project-http
+----
+
+== Test the Zabbix alerts:
+
+To do this, stop *httpd* on *node1* and validate in Zabbix the sending of the alert.
+
+NOTE: To generate new alerts we need to start and stop *httpd*.
+
+Next stop the server's *httpd*:
+
+[source,bash]
+----
+ssh node1
+sudo systemctl stop httpd 
+sudo systemctl start httpd
+----
+
+Now Zabbix will send the notification to Event-Driven Ansible:
+
+image::lab005-023.jpg[lab005-023,100%,100%,link=self,window=_blank]
+
+And Check if the job ran successfully:
+
+image::lab005-020.jpg[lab005-020,100%,100%,link=self,window=_blank]
+
+Now we can see the logs in Event-Driven Ansible
+
+NOTE: The success of this lab is that Ansible starts HTTPD on *node1* with a Zabbix Alert.
+
+
+
+'''
+
+**PAUSE**
+
+'''
+
+== Before moving ahead 
+
+=== Please take a moment to solve the challenge on your own
+
+**The real value of this activity lies in your effort to troubleshoot independently.**
+
+**Once you have tried, continue to the next section for guided steps to verify your approach or learn an alternate solution.**
+
+'''
+
+**CONTINUE**
+
+'''
+
+[#guided_solution]
+== Guided solution
+
+. First, you will need to disable the eda-debug rulebook under under Automation Decisions > Rulebook Activations. 
+
+. Next, after creating a new "project-http" inventory and adding localhost as a new host under the Hosts tab, remember to put localhost into disabled mode for this new inventory.
+
+. Then, the job template should be created with the following parameters:
+
+
+[source,bash]
+----
+Name: project-http
+Project: rh1-ansible-eda-vars-zabbix
+Playbook: project-http/playbook.yml
+Credentials: ec2-user
+Inventory: project-http
+Extra variable: checkbox as Prompt on launch
+----
+
+image::lab005-new001.png[lab005-new001,100%,100%,link=self,window=_blank]
+
+. Change *remote_user: root* to *remote_user: ec2-user* in playbook project-http/playbook.yml. 
+
+. Change the condition line in the _rulebooks/webhook-zabbix.yml_ file
+
+[source,bash]
+----
+condition: event.payload.event_name is regex("Apache.*Service is down", ignorecase=true)
+----
+
+[source,bash]
+----
+cd 05-lab/
+cd rh1-ansible-eda-vars-zabbix/
+vim project-http/playbook.yml
+git add . ; git commit -m add ; git push
+----
+
+.Output
+----
+[ec2-user@node1 ~]$ cd 05-lab/
+[ec2-user@node1 05-lab]$ cd rh1-ansible-eda-vars-zabbix/
+[ec2-user@node1 rh1-ansible-eda-vars-zabbix]$
+[ec2-user@node1 rh1-ansible-eda-vars-zabbix]$ vim project-http/playbook.yml
+[ec2-user@node1 05-lab]$ git add . ; git commit -m add ; git push
+----
+
+To test the configuration, you can start and stop the Apache service:
+
+[source,bash]
+---
+sudo systemctl start httpd
+sudo systemctl stop httpd
+---
+
+
+NOTE: Congratulations! You have completed all lab objectives!

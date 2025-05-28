@@ -1,5 +1,5 @@
 site:
-  title: FIXME Course Title
+  title:  "Product Enablement: Event-Driven Ansible Breakfix lab"
   start_page: troubleshooting-eda::index.adoc
 
 content:

@@ -1,21 +1,81 @@
-= What’s in this break-fix?
+= Product Enablement: Event-Driven Ansible Breakfix lab
 
-== In this break-fix:
+Welcome to the *Troubleshooting Event-Driven Ansible in Ansible Automation Platform* lab. In this session, we will work with Ansible Automation Platform 2.5, GitLab, and a Zabbix Server. 
 
-**Type of issue:**
+Labs 1 through 5 contain issues that need to be identified and resolved. Zabbix will monitor `node1`, and we will simulate an alert by stopping Apache. This alert will be sent to Event-Driven Ansible (Automation Decisions), which will use Ansible to resolve the detected issues. Several configuration changes will be required in the environment to achieve this outcome.
 
-FIXME: Describe an issue type/category that this specific issue falls into, like, "A Red Hat Enterprise Linux 7 system won't boot after a kernel update." Save issue-specific details for the break-fix scenario page.
+== Lab Access
+
+The terminal window on the right is *already* logged into the *bastion* node as the `ssh_user`. If it is not click "Terminals" in the top left of the left-side screen and two terminals will appear. You will need to do a carriage return to get paste to work.
+
+NOTE: The ec2-user is the primary user account provisioned on controller, node1, and server. From the bastion host, the lab-user connects to all hosts by utilizing the ssh key of the ec2-user.
+
+== Lab Access Details
+
+* If you are not already logged in to the *bastion* host when you open the terminals, log in to it now:
+
+[subs=attributes+]
+----
+ssh_command
+
+----
+
+Bastion password `{ssh_password}`
 
 
+== Ansible Automation Platform Web Console:
+  * URL: https://{nginx_web_url}[window=_blank]
+  * Username: `admin`
+  * Password: `R3dh4t1!`
 
-**What you should already know:**
+NOTE: To avoid being logged out, modify the `Session cookie age`. Log in to https://{nginx_web_url}. On the left side menu navigate to, menu:Settings[Platform gateway]. Click btn:[Edit platform gateway settings],and change the `Session cookie age` to `7200`. Then click btn:[Save platform gateway settings]. You will need to logout and log back in to implement the change.
 
-FIXME: This training assumes that you are a Red Hat Certified System Administrator (RHCSA) or have equivalent experience administrating Red Hat Enterprise Linux 7 or 8. FIXME - update this as needed
+== Access Gitlab running on server:
+  * URL: https://server.{subdomain_base}[window=_blank]
+  * Username: `root`
+  * Password: `redhat..123`
+
+== Access Zabbix running on server:
+  * URL: http://server.{subdomain_base}/zabbix[window=_blank]
+  * Username: `Admin`
+  * Password: `zabbix`
+
+NOTE: The Zabbix server is currently running on HTTP and *not* HTTPS. If your browser automatically switches the URL to HTTPS, you will need to manually change it back to HTTP to access the server.
+
+== Access other instances from Bastion
+
+* Log in to the Ansible Automation Platform Controller from the *bastion* host:
+
+[subs=attributes+]
+----
+[lab-user@bastion ~]$ ssh controller
+----
+
+* Log in to *node1* from *bastion*:
+
+[subs=attributes+]
+----
+[lab-user@bastion ~]$ ssh node1
+----
+
+* Log in to the additional *server* from *bastion*:
+
+[subs=attributes+]
+----
+[lab-user@bastion ~]$ ssh server
+----
+
+== Documentation:
+If needed, here are links to documentation:
+
+* https://ansible.readthedocs.io/projects/rulebook/en/stable/introduction.html[window=_blank]
+
+* https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.5[window=_blank]
 
 
-**How break-fix training works:**
+=== Solution:
 
-. Challenge yourself in the break-fix activity. It describes a problem scenario that's simulated in the lab environment where you can investigate and solve the problem.
-. Follow up with the guided solution:
-.. If you weren't able to solve the problem on your own, read and follow the instructions in the Guided Solution to complete this training.
-.. If you were successful in solving the problem, read the solution for useful tips you can apply when solving similar problems.
+A step-by-step guided solution is provided at the end of each lab section. 
+Before proceeding, take a moment to try the challenge on your own. 
+The true value of this activity lies in your effort to troubleshoot independently. 
+Once you have made an attempt, you can refer to the guided solutions to verify your approach or explore an alternate solution.

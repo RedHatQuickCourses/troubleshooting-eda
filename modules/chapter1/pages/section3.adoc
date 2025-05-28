@@ -1,0 +1,483 @@
+= Configure Event-Driven to pass extra variables to Ansible Automation Platform
+
+[#in_this_bfx]
+== What is in this break-fix
+
+In this section, you will configure Ansible Automation Platform to receive events from Event-Driven Ansible (Automation Decisions). After sending the curl command with the host parameters, you need to validate if the Job Template _rh1-aap-extra-vars-eda_ will execute with the Event-Driven Ansible (Automation Decisions) event.
+
+== Let's copy the files:
+
+On *node1* let's list the files in the _.ssh/_ folder and view your public key.
+
+[source,sh,role=execute]
+----
+ssh node1 
+ls -lha .ssh/
+cat .ssh/n66g5key.pub # (Change to your ssh pub key)
+----
+
+.Output
+----
+[lab-user@bastion ~]$ ssh node1 
+[ec2-user@node1 ~]$ ls -lha .ssh/
+total 36K
+drwx------.  2 ec2-user ec2-user  157 Nov 26 14:23 .
+drwx------. 10 ec2-user ec2-user 4.0K Nov 26 14:05 ..
+-rw-------.  1 ec2-user ec2-user 3.1K Nov 26 13:21 authorized_keys
+-r--------.  1 ec2-user ec2-user  216 Nov 26 14:02 config
+-rw-------.  1 ec2-user ec2-user 2.6K Nov 26 13:47 id_rsa
+-rw-------.  1 ec2-user ec2-user  582 Nov 26 13:47 id_rsa.pub
+-rw-------.  1 ec2-user ec2-user 1.7K Nov 26 14:23 known_hosts
+-rw-------.  1 ec2-user ec2-user  913 Nov 26 14:21 known_hosts.old
+-r--------.  1 ec2-user ec2-user 2.6K Nov 26 14:22 n66g5key.pem
+-r--------.  1 ec2-user ec2-user  552 Nov 26 14:22 n66g5key.pub
+[ec2-user@node1 ~]$ cat .ssh/n66g5key.pub (Change to your ssh pub key)
+----
+
+Copy the contents of the public key and add it to this link. To do this you will need to hold the kbd:[Shift] key, and then highlight the key and right click to copy.
+
+image::lab003-git.png[lab003-git,100%,100%,link=self,window=_blank]
+
+Go to User Settings / Preferences / SSH keys
+
+image::lab003-git002.png[lab003-git002,100%,100%,link=self,window=_blank]
+
+
+
+You will need to open and log in to the GitLab server if you have not done so already.
+
+  * URL: https://server.{subdomain_base}/-/user_settings/ssh_keys[window=_blank]
+  * Username: `root`
+  * Password: `redhat..123`
+
+image::lab003-add002.jpg[lab003-add002,100%,100%,link=self,window=_blank]
+
+Click btn:[Add new key] and paste the public key into the *"Key"* box. Give it a title and click btn:[Add key].
+
+image::lab003-add004.jpg[lab003-add004,100%,100%,link=self,window=_blank]
+
+image::lab003-add005.jpg[lab003-add005,100%,100%,link=self,window=_blank]
+
+On *node1*, pull the _rh1-aap-extra-vars-eda_ repository and copy both folders into _rh1-aap-extra-vars-eda_:
+
+[source,sh,role=execute]
+----
+cd 03-lab/
+git clone git@server.example.com:root/rh1-aap-extra-vars-eda.git
+cp -rf rh1-eda-example/*  rh1-aap-extra-vars-eda/
+----
+
+.Output
+----
+[ec2-user@node1 ~]$ cd 03-lab/
+[ec2-user@node1 03-lab]$ git clone git@server.example.com:root/rh1-aap-extra-vars-eda.git
+[ec2-user@node1 03-lab]$ cp -rf rh1-eda-example/*  rh1-aap-extra-vars-eda/
+----
+
+Change directory to _rh1-aap-extra-vars-eda_ and commit to git:
+
+[source,sh,role=execute]
+----
+cd rh1-aap-extra-vars-eda/
+git config --global user.name "ec2-user"
+git config --global user.email ec2-user@localhost
+git add .
+git commit -m "RH1"
+git push 
+----
+
+.Output
+----
+[ec2-user@node1 03-lab]$ cd rh1-aap-extra-vars-eda/
+[ec2-user@node1 rh1-aap-extra-vars-eda]$ git config --global user.name "ec2-user"
+[ec2-user@node1 rh1-aap-extra-vars-eda]$ git config --global user.email ec2-user@localhost
+[ec2-user@node1 rh1-aap-extra-vars-eda]$ git add .
+[ec2-user@node1 rh1-aap-extra-vars-eda]$ git commit -m "RH1"
+[ec2-user@node1 rh1-aap-extra-vars-eda]$ git push 
+----
+
+== Now in Automation Execution(Controller):
+
+If you have not already opened Ansible Auotomaton Platform, do so now. The URL is: https://controller.{subdomain_base}/[window=_blank]
+Log in with the these credentials
+
+[source,bash]
+----
+User: admin
+Pass: R3dh4t1!
+----
+
+Create the inventory. Select menu:Automation Execution[Infrastructure > Inventories].
+
+To create the inventory, click btn:[Create inventory] in blue.
+
+image::create-inventory-001.jpg[create-inventory-001,100%,100%,link=self,window=_blank]
+
+
+[source,bash]
+----
+Name: localhost
+Organization: Default
+----
+
+image::lab003-002.jpg[lab003-002,100%,100%,link=self,window=_blank]
+
+Now click btn:[Create inventory]:
+
+To add a host to the inventory, click the btn:[Hosts] tab. 
+
+image::lab003-003.jpg[lab003-003,100%,100%,link=self,window=_blank]
+
+Click btn:[Create host]:
+
+image::lab003-004.jpg[lab003-004,100%,100%,link=self,window=_blank]
+
+Name: localhost
+
+image::lab003-005.jpg[lab003-005,100%,100%,link=self,window=_blank]
+
+Click btn:[Create host]:
+
+Next, create the _ec2-user_ user credential in Ansible Automation Platform.
+
+To create the machine credential in Ansible Automation Platform, we need to get the private key from the *bastion* host.
+
+The environment referenced in the lab document is using __.ssh/vkhtjkey.pem__ as the SSH key. Your key will be named differently. 
+
+NOTE: To validate your private key:
+
+
+[source,bash]
+----
+[lab-user@bastion ~]$ ls -lha .ssh/
+total 24K
+drwx------. 2 lab-user lab-user  102 Nov 19 02:24 .
+drwxr-xr-x. 8 lab-user lab-user 4.0K Nov 19 12:41 ..
+-rw-------. 1 lab-user lab-user 2.4K Nov 19 13:10 authorized_keys
+-r--------. 1 lab-user root      216 Nov 19 01:40 config
+-rw-r--r--. 1 lab-user lab-user  374 Nov 19 12:41 known_hosts
+-r--------. 1 lab-user root     2.6K Nov 19 01:40 wlffskey.pem
+-r--------. 1 lab-user root      552 Nov 19 01:40 wlffskey.pub
+[lab-user@bastion ~]$ 
+[lab-user@bastion ~]$ cat .ssh/vkhtjkey.pem 
+----
+
+Copy the contents of the private key and create the machine credential:
+
+[source,bash]
+----
+Name: ec2-user
+Organization: Default
+credential type: Machine
+Username: ec2-user
+SSH Private Key: Copy your bastion private key: cat .ssh/vkhtjkey.pem
+
+----
+
+image::lab003-009.jpg[lab003-009,100%,100%,link=self,window=_blank]
+
+Confirm that you created the _ec2-user_ user:
+
+image::lab003-010.jpg[lab003-010,100%,100%,link=self,window=_blank]
+
+Create the gitlab credential:
+
+
+[source,bash]
+----
+Name: gitlab
+Organization: Default
+credential type: Source Control
+Username: root
+SCM Private Key: Copy your bastion private key: cat .ssh/vkhtjkey.pem
+----
+
+image::lab003-011.jpg[lab003-011,100%,100%,link=self,window=_blank]
+
+Create a project in Ansible Automation Platform to sync the _rh1-aap-extra-vars-eda_ project:
+
+[source,bash]
+----
+Name: rh1-aap-extra-vars-eda
+Organization: Default
+credential control type: git
+Source control URL: git@server.example.com:root/rh1-aap-extra-vars-eda.git
+Source control credential: gitlab
+check box:
+  Clean
+  Delete
+  Update revision on launch
+----
+
+image::lab003-015.jpg[lab003-015,100%,100%,link=self,window=_blank]
+
+Now click btn:[Create project]:
+
+Once the project finishes syncing, create the *job_template* in Ansible Automation Platform with the project name _rh1-aap-extra-vars-eda_:
+
+[source,bash]
+----
+Name: rh1-aap-extra-vars-eda
+Inventory: localhost 
+Project: rh1-aap-extra-vars-eda
+Playbook: playbook/hello-rh1.yml
+Credentials: ec2-user
+----
+
+image::lab003-add006.jpg[lab003-add006,100%,100%,link=self,window=_blank]
+
+== Now in Automation Decisions (Event-Driven) create the credential:
+
+To create the credential, select menu:Automation Decisions[Infrastructure > Credentials > Create credential]:
+
+image::lab003-017.jpg[lab003-017,100%,100%,link=self,window=_blank]
+
+Now add the credential information:
+
+image::lab003-018.jpg[lab003-018,100%,100%,link=self,window=_blank]
+
+[source,bash]
+----
+Name: gitlab 
+Organization: Default
+Credential type: Source Control 
+Username: root
+Password: redhat..123
+
+----
+Create the project in Event-Driven:
+
+Select Automation Decisions > Projects and Click btn:[Create project]:
+
+image::lab003-021.jpg[lab003-021,100%,100%,link=self,window=_blank]
+
+Create the project with the following information:
+
+[source,bash]
+----
+Name: rh1-aap-extra-vars-eda 
+Organization: Default
+Source control type: git
+Source control URL: https://server.example.com/root/rh1-aap-extra-vars-eda.git
+Source control credential: gitlab
+Disable verify SSL: Uncheck
+----
+
+NOTE: The project does not sync. Find the error and resolve.
+
+image::lab003-020.jpg[lab003-020,100%,100%,link=self,window=_blank]
+
+NOTE: Import error: The 'extensions/eda/rulebooks' or 'rulebooks' directory doesn't exist within the project root.
+
+image::lab003-024.jpg[lab003-024,100%,100%,link=self,window=_blank]
+
+Next, under Automation Decisions > Infrastructure > Credentials, click Create credential
+
+Click btn:[Create credential]:
+
+image::lab003-017.jpg[lab003-017,100%,100%,link=self,window=_blank]
+
+image::lab003-018.jpg[lab003-018,100%,100%,link=self,window=_blank]
+
+Now add, the following to your credential:
+
+[source,bash]
+----
+Name: AAP
+Organization: Default
+Credential type: Red Hat Ansible Automation Platform
+Red Hat Ansible Automation Platform: https://controller.example.com/api/controller/
+Username: admin 
+Password: R3dh4t1!
+----
+
+Click btn:[Create credential]:
+
+image::lab003-027.jpg[lab003-027,100%,100%,link=self,window=_blank]
+
+Create credential registry Red Hat.
+
+Click in btn:[Create credential] in Automation Decisions:
+
+image::lab003-add007.png[lab003-add007,100%,100%,link=self,window=_blank]
+
+[source,bash]
+----
+Name: redhat
+Organization: Default
+Credential type: Container Registry
+authentication URL: registry.redhat.io
+username: 1979710|rh1lab20
+Password or Token: (The token is located in /home/ec2-user/03-lab/registry-credentials.txt one node1)
+----
+
+image::lab003-add008.png[lab003-add008,100%,100%,link=self,window=_blank]
+
+Now edit Decision Environments:
+
+Click the three dots, then btn:[Edit decision environment].
+
+image::lab003-add009.png[lab003-add009,100%,100%,link=self,window=_blank]
+
+image::lab003-add010.png[lab003-add010,100%,100%,link=self,window=_blank]
+
+In credential, add *redhat*.
+
+image::lab003-add011.png[lab003-add011,100%,100%,link=self,window=_blank]
+
+Click btn:[Save Decision Environment].
+
+
+Now create the Rulebook:
+
+NOTE: The Rulebook will not be able to be located. You need to resolve this issue.
+
+Under Automation Decisions > Rulebook Activations, click btn:[Create rulebook activation]:
+
+[source,bash]
+----
+Name: rh1-aap-extra-vars-eda
+Organization: Default
+Project: rh1-aap-extra-vars-eda
+Rulebook: webhook-example.yml
+Credential: AAP
+Decision environment: Default Decision Environment
+----
+
+
+image::lab003-025.jpg[lab003-025,100%,100%,link=self,window=_blank]
+
+image::lab003-028.jpg[lab003-028,100%,100%,link=self,window=_blank]
+
+Click btn:[Create rulebook activation]
+
+Now the activation should show as *Running*:
+
+image::lab003-032.jpg[lab003-032,100%,100%,link=self,window=_blank]
+
+Click the rulebook: _rh1-aap-extra-vars-eda_
+
+image::lab003-033.jpg[lab003-033,100%,100%,link=self,window=_blank]
+
+Next go to the btn:[History] tab:
+
+image::lab003-034.jpg[lab003-034,100%,100%,link=self,window=_blank]
+
+Click the rulebook that is in Running:
+
+image::lab003-035.jpg[lab003-035,100%,100%,link=self,window=_blank]
+
+
+Now send the *curl* to this rulebook:
+
+
+[source,sh,role=execute]
+----
+ssh node1
+curl -H 'Content-Type: application/json' -d '{"event_name": "Hello", "host_host": "node1.example.com" }' controller:6000/endpoint
+----
+
+
+After sending the curl. The Job Template _rh1-aap-extra-vars-eda_ will run.
+
+
+NOTE: You need to resolve this error:
+
+.Output
+----
+fatal: [localhost]: FAILED! => {"msg": "'hosts_update' is undefined. 'hosts_update' is undefined"}
+----
+
+NOTE: You need to resolve this error:
+
+.Output
+----
+fatal: [localhost]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ssh: connect to host localhost port 22: Connection refused", "unreachable": true}
+----
+
+
+
+'''
+
+**PAUSE**
+
+'''
+
+== Before moving ahead 
+
+=== Please take a moment to solve the challenge on your own.
+
+**The real value of this activity lies in your effort to troubleshoot independently.**
+
+**Once you have tried, continue to the next section for guided steps to verify your approach or learn an alternate solution.**
+
+'''
+
+**CONTINUE**
+
+'''
+
+
+[#guided_solution]
+== Guided solution
+
+image::lab03-erro-lab.png[lab03-erro-lab,100%,100%,link=self,window=_blank]
+
+. The rulebook folder name is missing the S:
+
+[source,bash]
+----
+[ec2-user@node1 ~]$ cd 03-lab/
+[ec2-user@node1 03-lab]$ ls
+rh1-aap-extra-vars-eda  rh1-eda-example
+[ec2-user@node1 03-lab]$ cd rh1-aap-extra-vars-eda/
+[ec2-user@node1 rh1-aap-extra-vars-eda]$ ls
+playbook  README.md  rulebook
+[ec2-user@node1 rh1-aap-extra-vars-eda]$ mv rulebook rulebooks
+[ec2-user@node1 rh1-aap-extra-vars-eda]$ git add .
+[ec2-user@node1 rh1-aap-extra-vars-eda]$ git commit -m add
+[ec2-user@node1 rh1-aap-extra-vars-eda]$ git push 
+----
+
+. Disable host in inventory:
+
+  Go back to the inventory and disable the host:
+  
+image::lab003-007.jpg[lab003-006,100%,100%,link=self,window=_blank]
+
+. Remove `remote_user: root` the playbook _hello-rh1.yml_.
+
+[source,bash]
+----
+[ec2-user@node1 ~]$ cd 03-lab/
+[ec2-user@node1 03-lab]$ ls
+rh1-aap-extra-vars-eda  rh1-eda-example
+[ec2-user@node1 03-lab]$ cd rh1-aap-extra-vars-eda/
+[ec2-user@node1 rh1-aap-extra-vars-eda]$ ls
+playbook  README.md  rulebooks
+[ec2-user@node1 rh1-aap-extra-vars-eda]$ vim playbook/hello-rh1.yml
+----
+Save the file.
+
+
+To resolve this issue:
+
+NOTE: fatal: [localhost]: FAILED! => {"msg": "'hosts_update' is undefined. 'hosts_update' is undefined"}
+
+Make this configuration:
+
+. In job_template _rh1-aap-extra-vars-eda_, enable *Prompt on launch* in Extra variables.
+
+image::lab003-add013.png[lab003-add013,100%,100%,link=self,window=_blank]
+
+. Now, send the *curl* command:
+
+[source,sh,role=execute]
+----
+ssh node1
+curl -H 'Content-Type: application/json' -d '{"event_name": "Hello", "host_host": "node1.example.com" }' controller:6000/endpoint
+----
+
+After sending the *curl*. The Job Template _rh1-aap-extra-vars-eda_ will run.
+
+
