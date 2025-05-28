@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>What’s in this break-fix? :: FIXME Course Title</title>
+    <title>Product Enablement: Event-Driven Ansible Breakfix lab :: Product Enablement: Event-Driven Ansible Breakfix lab</title>
     <link rel="prev" href="../LABENV/index.html">
     <link rel="next" href="section1.html">
     <meta name="generator" content="Antora 3.1.3">
@@ -15,7 +15,7 @@
   <nav class="navbar">
     <div class="navbar-brand">
       <a class="navbar-item" href="https://www.redhat.com" target="_blank"><img src="../../../_/img/redhat-logo.png" height="40px" alt="Red Hat"></a>
-      <a class="navbar-item" style="font-size: 24px; color: white" href="../../..">FIXME Course Title</a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="../../..">Product Enablement: Event-Driven Ansible Breakfix lab</a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
         <span></span>
@@ -35,7 +35,7 @@
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="../index.html">FIXME Course Title</a></h3>
+    <h3 class="title"><a href="../index.html">Product Enablement: Event-Driven Ansible Breakfix lab</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
@@ -55,29 +55,22 @@
 <ul class="nav-list">
   <li class="nav-item is-current-page" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">What’s in this break-fix?</a>
+    <a class="nav-link" href="index.html">Product Enablement: Event-Driven Ansible Breakfix lab</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="section1.html">Break-fix activity</a>
+    <a class="nav-link" href="section1.html">Troubleshooting the rulebook using CURL</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="section2.html">Check your work</a>
-  </li>
-</ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../chapter2/index.html">Guided solution</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter2/section1.html">Guided solution (page 1 of 2)</a>
+    <a class="nav-link" href="section2.html">Troubleshoot rulebook using CURL and extra_vars</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter2/section2.html">Guided solution (page 2 of 2)</a>
+    <a class="nav-link" href="#section3adoc">[section3adoc]</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#section4adoc">[section4adoc]</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#section5adoc">[section5adoc]</a>
   </li>
 </ul>
   </li>
@@ -95,12 +88,12 @@
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">FIXME Course Title</span>
+    <span class="title">Product Enablement: Event-Driven Ansible Breakfix lab</span>
     <span class="version">1</span>
   </div>
   <ul class="components">
     <li class="component is-current">
-      <a class="title" href="../index.html">FIXME Course Title</a>
+      <a class="title" href="../index.html">Product Enablement: Event-Driven Ansible Breakfix lab</a>
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="../index.html">1</a>
@@ -118,8 +111,7 @@
   <a href="../index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="../index.html">FIXME Course Title</a></li>
-    <li><a href="index.html">What’s in this break-fix?</a></li>
+    <li><a href="index.html">Product Enablement: Event-Driven Ansible Breakfix lab</a></li>
   </ul>
 </nav>
 </div>
@@ -128,50 +120,206 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">What’s in this break-fix?</h1>
-<div class="sect1">
-<h2 id="_in_this_break_fix"><a class="anchor" href="#_in_this_break_fix"></a>In this break-fix:</h2>
+<h1 class="page">Product Enablement: Event-Driven Ansible Breakfix lab</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>Type of issue:</strong></p>
+<p>Welcome to the <strong>Troubleshooting Event-Driven Ansible in Ansible Automation Platform</strong> lab. In this session, we will work with Ansible Automation Platform 2.5, GitLab, and a Zabbix Server.</p>
 </div>
 <div class="paragraph">
-<p>FIXME: Describe an issue type/category that this specific issue falls into, like, "A Red Hat Enterprise Linux 7 system won&#8217;t boot after a kernel update." Save issue-specific details for the break-fix scenario page.</p>
+<p>Labs 1 through 5 contain issues that need to be identified and resolved. Zabbix will monitor <code>node1</code>, and we will simulate an alert by stopping Apache. This alert will be sent to Event-Driven Ansible (Automation Decisions), which will use Ansible to resolve the detected issues. Several configuration changes will be required in the environment to achieve this outcome.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_lab_access"><a class="anchor" href="#_lab_access"></a>Lab Access</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The terminal window on the right is <strong>already</strong> logged into the <strong>bastion</strong> node as the <code>ssh_user</code>. If it is not click "Terminals" in the top left of the left-side screen and two terminals will appear. You will need to do a carriage return to get paste to work.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The ec2-user is the primary user account provisioned on controller, node1, and server. From the bastion host, the lab-user connects to all hosts by utilizing the ssh key of the ec2-user.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_lab_access_details"><a class="anchor" href="#_lab_access_details"></a>Lab Access Details</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>If you are not already logged in to the <strong>bastion</strong> host when you open the terminals, log in to it now:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>ssh_command</pre>
+</div>
 </div>
 <div class="paragraph">
-<p><strong>What you should already know:</strong></p>
+<p>Bastion password <code>{ssh_password}</code></p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ansible_automation_platform_web_console"><a class="anchor" href="#_ansible_automation_platform_web_console"></a>Ansible Automation Platform Web Console:</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>URL: <a href="https://{nginx_web_url}" class="bare" target="_blank" rel="noopener">https://{nginx_web_url}</a></p>
+</li>
+<li>
+<p>Username: <code>admin</code></p>
+</li>
+<li>
+<p>Password: <code>R3dh4t1!</code></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+To avoid being logged out, modify the <code>Session cookie age</code>. Log in to <a href="https://{nginx_web_url}" class="bare">https://{nginx_web_url}</a>. On the left side menu navigate to, menu:Settings[Platform gateway]. Click btn:[Edit platform gateway settings],and change the <code>Session cookie age</code> to <code>7200</code>. Then click btn:[Save platform gateway settings]. You will need to logout and log back in to implement the change.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_access_gitlab_running_on_server"><a class="anchor" href="#_access_gitlab_running_on_server"></a>Access Gitlab running on server:</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>URL: <a href="https://server.{subdomain_base}" class="bare" target="_blank" rel="noopener">https://server.{subdomain_base}</a></p>
+</li>
+<li>
+<p>Username: <code>root</code></p>
+</li>
+<li>
+<p>Password: <code>redhat..123</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_access_zabbix_running_on_server"><a class="anchor" href="#_access_zabbix_running_on_server"></a>Access Zabbix running on server:</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>URL: <a href="http://server.{subdomain_base}/zabbix" class="bare" target="_blank" rel="noopener">http://server.{subdomain_base}/zabbix</a></p>
+</li>
+<li>
+<p>Username: <code>Admin</code></p>
+</li>
+<li>
+<p>Password: <code>zabbix</code></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The Zabbix server is currently running on HTTP and <strong>not</strong> HTTPS. If your browser automatically switches the URL to HTTPS, you will need to manually change it back to HTTP to access the server.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_access_other_instances_from_bastion"><a class="anchor" href="#_access_other_instances_from_bastion"></a>Access other instances from Bastion</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Log in to the Ansible Automation Platform Controller from the <strong>bastion</strong> host:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>[lab-user@bastion ~]$ ssh controller</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Log in to <strong>node1</strong> from <strong>bastion</strong>:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>[lab-user@bastion ~]$ ssh node1</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Log in to the additional <strong>server</strong> from <strong>bastion</strong>:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>[lab-user@bastion ~]$ ssh server</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_documentation"><a class="anchor" href="#_documentation"></a>Documentation:</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>FIXME: This training assumes that you are a Red Hat Certified System Administrator (RHCSA) or have equivalent experience administrating Red Hat Enterprise Linux 7 or 8. FIXME - update this as needed</p>
+<p>If needed, here are links to documentation:</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://ansible.readthedocs.io/projects/rulebook/en/stable/introduction.html" class="bare" target="_blank" rel="noopener">https://ansible.readthedocs.io/projects/rulebook/en/stable/introduction.html</a></p>
+</li>
+<li>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.5" class="bare" target="_blank" rel="noopener">https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.5</a></p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_solution"><a class="anchor" href="#_solution"></a>Solution:</h3>
 <div class="paragraph">
-<p><strong>How break-fix training works:</strong></p>
+<p>A step-by-step guided solution is provided at the end of each lab section.
+Before proceeding, take a moment to try the challenge on your own.
+The true value of this activity lies in your effort to troubleshoot independently.
+Once you have made an attempt, you can refer to the guided solutions to verify your approach or explore an alternate solution.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Challenge yourself in the break-fix activity. It describes a problem scenario that&#8217;s simulated in the lab environment where you can investigate and solve the problem.</p>
-</li>
-<li>
-<p>Follow up with the guided solution:</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>If you weren&#8217;t able to solve the problem on your own, read and follow the instructions in the Guided Solution to complete this training.</p>
-</li>
-<li>
-<p>If you were successful in solving the problem, read the solution for useful tips you can apply when solving similar problems.</p>
-</li>
-</ol>
-</div>
-</li>
-</ol>
 </div>
 </div>
 </div>
 <nav class="pagination">
   <span class="prev"><a href="../LABENV/index.html">Lab Environment</a></span>
-  <span class="next"><a href="section1.html">Break-fix activity</a></span>
+  <span class="next"><a href="section1.html">Troubleshooting the rulebook using CURL</a></span>
 </nav>
 </article>
   </div>

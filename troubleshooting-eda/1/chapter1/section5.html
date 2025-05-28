@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Let&#8217;s configure Event-Driven and Ansible Automation Platform to fix issues coming from Zabbix :: Product Enablement: Event-Driven Ansible Breakfix lab</title>
+    <meta name="generator" content="Antora 3.1.3">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.redhat.com" target="_blank"><img src="../../../_/img/redhat-logo.png" height="40px" alt="Red Hat"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="../../..">Product Enablement: Event-Driven Ansible Breakfix lab</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://github.com/RedHatQuickCourses/troubleshooting-eda/issues" target="_blank">Report Issues</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="troubleshooting-eda" data-version="1">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Product Enablement: Event-Driven Ansible Breakfix lab</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Home</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../LABENV/index.html">Lab Environment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Product Enablement: Event-Driven Ansible Breakfix lab</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section1.html">Troubleshooting the rulebook using CURL</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section2.html">Troubleshoot rulebook using CURL and extra_vars</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#section3adoc">[section3adoc]</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#section4adoc">[section4adoc]</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#section5adoc">[section5adoc]</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../appendix/appendix.html">Appendix</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Product Enablement: Event-Driven Ansible Breakfix lab</span>
+    <span class="version">1</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">Product Enablement: Event-Driven Ansible Breakfix lab</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">1</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Product Enablement: Event-Driven Ansible Breakfix lab</a></li>
+    <li><a href="section5.html">Let&#8217;s configure Event-Driven and Ansible Automation Platform to fix issues coming from Zabbix</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Let&#8217;s configure Event-Driven and Ansible Automation Platform to fix issues coming from Zabbix</h1>
+<div class="sect1">
+<h2 id="in_this_bfx"><a class="anchor" href="#in_this_bfx"></a>What is in this break-fix</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section, we will configure Zabbix to monitor <strong>node1</strong>. On <strong>node1</strong>, Apache is running. When Apache stops working, Zabbix sends an event to Event-Driven Ansible (Automation Decisions) and runs a job template to solve the problem.
+== Add the playbook and rulebook to git</p>
+</div>
+<div class="paragraph">
+<p>Add the files inside this folder to git.</p>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre>cd 05-lab/
+git clone git@server.example.com:root/rh1-ansible-eda-vars-zabbix.git
+cp -rf project-http rulebooks rh1-ansible-eda-vars-zabbix/
+cd rh1-ansible-eda-vars-zabbix/
+git add . ; git commit -m add ; git push</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[ec2-user@node1 ~]$ cd 05-lab/
+[ec2-user@node1 05-lab]$ git clone git@server.example.com:root/rh1-ansible-eda-vars-zabbix.git
+[ec2-user@node1 05-lab]$ cp -rf project-http rulebooks rh1-ansible-eda-vars-zabbix/
+[ec2-user@node1 05-lab]$ cd rh1-ansible-eda-vars-zabbix/
+[ec2-user@node1 rh1-ansible-eda-vars-zabbix]$
+[ec2-user@node1 05-lab]$ git add . ; git commit -m add ; git push</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In Ansible Automation Platform, we will create the <em>rh1-ansible-eda-vars-zabbix</em> project in Automation Decisions:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Name rh1-ansible-eda-vars-zabbix
+Organization Default
+Source control type Git
+Source control URL https://server.example.com/root/rh1-ansible-eda-vars-zabbix.git
+Source control credential: gitlab
+Options
+uncheck box Verify SSL</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="_images/lab005-001.jpg" target="_blank" rel="noopener"><img src="_images/lab005-001.jpg" alt="lab005-001" width="100%" height="100%"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>Make sure the project syncs successfully:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="_images/lab005-000.jpg" target="_blank" rel="noopener"><img src="_images/lab005-000.jpg" alt="lab005-000" width="100%" height="100%"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>After creating the project in Automation Decision, create the rulebook.</p>
+</div>
+<div class="paragraph">
+<p>Click btn:[Create rulebook activation]:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="_images/lab005-004.jpg" target="_blank" rel="noopener"><img src="_images/lab005-004.jpg" alt="lab005-004" width="100%" height="100%"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>Add the following information:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Name: rh1-ansible-eda-vars-zabbix
+Organization: Default
+Project: rh1-ansible-eda-vars-zabbix
+Rulebook: webhook-zabbix.yml
+Credential: AAP
+Decision Enviroment: Default Decision Enviroment
+Log Level: Debug
+Now click on Create rulebook activation</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="_images/lab005-005.jpg" target="_blank" rel="noopener"><img src="_images/lab005-005.jpg" alt="lab005-005" width="100%" height="100%"></a>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <em>webhook-zabbix.yml</em> file will not show in Event-Driven. Fix this before moving on.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Now, click btn:[Create rulebook activation].</p>
+</div>
+<div class="paragraph">
+<p>Validate if the rulebook is running.</p>
+</div>
+<div class="paragraph">
+<p>Details of how we created the Rulebook:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="_images/lab005-008.jpg" target="_blank" rel="noopener"><img src="_images/lab005-008.jpg" alt="lab005-008" width="100%" height="100%"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>Click btn:[History] to see the issue:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="_images/lab005-009.jpg" target="_blank" rel="noopener"><img src="_images/lab005-009.jpg" alt="lab005-009" width="100%" height="100%"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>The rulebook will fail to start due to a port conflict. Stop the <em>eda-debug</em> rulebook.</p>
+</div>
+<div class="paragraph">
+<p>Click on the running rulebook action in blue:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="_images/lab005-010.jpg" target="_blank" rel="noopener"><img src="_images/lab005-010.jpg" alt="lab005-010" width="100%" height="100%"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>Check the box:
+Yes, I confirm that I want to disable these rulebook activations.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="_images/lab005-011.jpg" target="_blank" rel="noopener"><img src="_images/lab005-011.jpg" alt="lab005-011" width="100%" height="100%"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>Click btn:[Disable rulebook activations]</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="_images/lab005-012.jpg" target="_blank" rel="noopener"><img src="_images/lab005-012.jpg" alt="lab005-012" width="100%" height="100%"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>Disable Rulebook activation successfully:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="_images/lab005-013.jpg" target="_blank" rel="noopener"><img src="_images/lab005-013.jpg" alt="lab005-013" width="100%" height="100%"></a>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The big problem is creating the correct regular expression for the payload to run.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Now it&#8217;s time to edit the <em>05-lab/rh1-ansible-eda-vars-zabbix/rulebooks/webhook-zabbix.yml</em> file and find the correct expression.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yml hljs" data-lang="yml">---
+- name: Listen for events on a webhook
+  hosts: all
+  sources:
+    - ansible.eda.webhook:
+        host: 0.0.0.0
+        port: 5000
+  rules:
+    - name: Zabbix Apache
+      condition: event.payload.event_name == "Apache: Service is down"
+      action:
+        run_job_template:
+          name: projeto-http
+          organization: Default
+          job_args:
+            extra_vars:
+              hosts_update: "{{ event.payload.host_host }}"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You only need to edit this line:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">condition: event.payload.event_name == "Apache: Service is down"</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Your rulebook will not start due to another error. Try to resolve it.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_lets_now_configure_automation_execution"><a class="anchor" href="#_lets_now_configure_automation_execution"></a>Let&#8217;s now configure Automation Execution.</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let&#8217;s create the <em>rh1-ansible-eda-vars-zabbix</em> project:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">name: rh1-ansible-eda-vars-zabbix
+Organization: Default
+Source Control type: git
+Source control URL: git@server.example.com:root/rh1-ansible-eda-vars-zabbix.git
+Source control Credential: gitlab
+Check box:
+    Clean,
+    Update revision on launch
+    Delete</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="_images/lab005-022.png" target="_blank" rel="noopener"><img src="_images/lab005-022.png" alt="lab005-022" width="100%" height="100%"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>Click btn:[Create project].</p>
+</div>
+<div class="paragraph">
+<p>Next, create the <strong>project-http</strong> inventory containing only the host <strong>localhost</strong>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Name: project-http
+Organization: Default</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="_images/lab005-015.jpg" target="_blank" rel="noopener"><img src="_images/lab005-015.jpg" alt="lab005-015" width="100%" height="100%"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>Click btn:[Create Host]:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="_images/lab005-016.jpg" target="_blank" rel="noopener"><img src="_images/lab005-016.jpg" alt="lab005-016" width="100%" height="100%"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>Now add the host <strong>localhost</strong>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Name: localhost</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="_images/lab005-017.jpg" target="_blank" rel="noopener"><img src="_images/lab005-017.jpg" alt="lab005-017" width="100%" height="100%"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>Next click btn:[Create Host]:</p>
+</div>
+<div class="paragraph">
+<p>Create the job template:
+In Automation Execution section in menu:Templates[Create Template &gt; Create Job Template]:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="_images/lab005-014.jpg" target="_blank" rel="noopener"><img src="_images/lab005-014.jpg" alt="lab005-014" width="100%" height="100%"></a>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Name: project-http
+Project: rh1-ansible-eda-vars-zabbix
+Playbook: project-http/playbook.yml
+Credentials: ec2-user
+Inventory: project-http</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_test_the_zabbix_alerts"><a class="anchor" href="#_test_the_zabbix_alerts"></a>Test the Zabbix alerts:</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To do this, stop <strong>httpd</strong> on <strong>node1</strong> and validate in Zabbix the sending of the alert.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+To generate new alerts we need to start and stop <strong>httpd</strong>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Next stop the server&#8217;s <strong>httpd</strong>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ssh node1
+sudo systemctl stop httpd
+sudo systemctl start httpd</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now Zabbix will send the notification to Event-Driven Ansible:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="_images/lab005-023.jpg" target="_blank" rel="noopener"><img src="_images/lab005-023.jpg" alt="lab005-023" width="100%" height="100%"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>And Check if the job ran successfully:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="_images/lab005-020.jpg" target="_blank" rel="noopener"><img src="_images/lab005-020.jpg" alt="lab005-020" width="100%" height="100%"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>Now we can see the logs in Event-Driven Ansible</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The success of this lab is that Ansible starts HTTPD on <strong>node1</strong> with a Zabbix Alert.
+</td>
+</tr>
+</table>
+</div>
+<hr>
+<div class="paragraph">
+<p><strong>PAUSE</strong></p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_before_moving_ahead"><a class="anchor" href="#_before_moving_ahead"></a>Before moving ahead</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_please_take_a_moment_to_solve_the_challenge_on_your_own"><a class="anchor" href="#_please_take_a_moment_to_solve_the_challenge_on_your_own"></a>Please take a moment to solve the challenge on your own</h3>
+<div class="paragraph">
+<p><strong>The real value of this activity lies in your effort to troubleshoot independently.</strong></p>
+</div>
+<div class="paragraph">
+<p><strong>Once you have tried, continue to the next section for guided steps to verify your approach or learn an alternate solution.</strong></p>
+</div>
+<hr>
+<div class="paragraph">
+<p><strong>CONTINUE</strong></p>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="guided_solution"><a class="anchor" href="#guided_solution"></a>Guided solution</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>First, you will need to disable the eda-debug rulebook under under Automation Decisions &gt; Rulebook Activations.</p>
+</li>
+<li>
+<p>Next, after creating a new "project-http" inventory and adding localhost as a new host under the Hosts tab, remember to put localhost into disabled mode for this new inventory.</p>
+</li>
+<li>
+<p>Then, the job template should be created with the following parameters:</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Name: project-http
+Project: rh1-ansible-eda-vars-zabbix
+Playbook: project-http/playbook.yml
+Credentials: ec2-user
+Inventory: project-http
+Extra variable: checkbox as Prompt on launch</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="_images/lab005-new001.png" target="_blank" rel="noopener"><img src="_images/lab005-new001.png" alt="lab005-new001" width="100%" height="100%"></a>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Change <strong>remote_user: root</strong> to <strong>remote_user: ec2-user</strong> in playbook project-http/playbook.yml.</p>
+</li>
+<li>
+<p>Change the condition line in the <em>rulebooks/webhook-zabbix.yml</em> file</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">condition: event.payload.event_name is regex("Apache.*Service is down", ignorecase=true)</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd 05-lab/
+cd rh1-ansible-eda-vars-zabbix/
+vim project-http/playbook.yml
+git add . ; git commit -m add ; git push</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre>[ec2-user@node1 ~]$ cd 05-lab/
+[ec2-user@node1 05-lab]$ cd rh1-ansible-eda-vars-zabbix/
+[ec2-user@node1 rh1-ansible-eda-vars-zabbix]$
+[ec2-user@node1 rh1-ansible-eda-vars-zabbix]$ vim project-http/playbook.yml
+[ec2-user@node1 05-lab]$ git add . ; git commit -m add ; git push</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To test the configuration, you can start and stop the Apache service:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">---
+sudo systemctl start httpd
+sudo systemctl stop httpd
+---</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Congratulations! You have completed all lab objectives!
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <img src="../../../_/img/rhl-logo-red.png" height="40px" alt="Red Hat"  href="https://redhat.com" >
+</footer><script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
