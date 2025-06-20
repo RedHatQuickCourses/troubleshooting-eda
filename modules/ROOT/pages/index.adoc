@@ -1,12 +1,26 @@
-= An Example Break-fix course
+= Product Enablement: Event-Driven Ansible Troubleshooting Lab
 :navtitle: Home
 
 == Introduction
 
-TITLE1: Red Hat Enterprise Linux 9 (FIXME product)
+This course is designed to provide hands-on experience with Event-Driven Ansible within Ansible Automation Platform 2.5. Participants will engage with a critical set of tools, including GitLab for version control and a Zabbix Server for comprehensive monitoring.
 
-TITLE2: Break-fix Practice 1 (FIXME title)
+The primary objective is to identify and resolve pre-configured issues within Labs 1 through 5. To simulate a practical scenario, node1 will be monitored by Zabbix. An alert will be triggered by intentionally stopping the Apache service. This alert will then be transmitted to Event-Driven Ansible (Automation Decisions), which will subsequently utilize Ansible to remediate the detected issues. Successful completion will necessitate several key configuration adjustments within the environment.
 
-Description:
-This break-fix training simulates a problem FIXME . You'll investigate and solve the problem in a hands-on lab environment to complete the training.
+Duration 90 minutes 
 
+== Objectives 
+
+Upon completion of this lab, you will be able to:
+
+- Troubleshoot rulebooks effectively using CURL to diagnose issues within Event-Driven Ansible.
+- Utilize CURL with extra_vars to test and debug rulebook behavior with dynamic inputs.
+- Configure Event-Driven Ansible to successfully pass extra_vars to Ansible Automation Platform.
+- Integrate Event-Driven Ansible and Ansible Automation Platform to automatically remediate issues identified by Zabbix. 
+
+== Contributors
+
+The PTL team acknowledges the valuable contributions of the following Red Hat associates:
+
+- Amrinder Singh (Content Architect)
+- Rutuja Deshmukh (Editor)

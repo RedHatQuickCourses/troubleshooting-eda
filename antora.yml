@@ -1,5 +1,5 @@
 name: troubleshooting-eda
-title: "Product Enablement: Event-Driven Ansible Breakfix lab"
+title: "Product Enablement: Event-Driven Ansible Troubleshooting Lab"
 version: 1
 nav:
 - modules/ROOT/nav.adoc

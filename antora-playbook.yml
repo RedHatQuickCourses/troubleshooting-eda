@@ -1,5 +1,5 @@
 site:
-  title:  "Product Enablement: Event-Driven Ansible Breakfix lab"
+  title:  "Product Enablement: Event-Driven Ansible Troubleshooting Lab"
   start_page: troubleshooting-eda::index.adoc
 
 content:

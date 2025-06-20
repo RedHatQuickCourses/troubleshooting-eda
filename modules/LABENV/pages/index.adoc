@@ -2,17 +2,24 @@
 
 == Instructions to Launch Your Lab on the Red Hat Demo Platform (RHDP)
 
-. **Log in** to the xref:#RHDP-Portal-Links[RHDP portal]
-. **Search** for the catalog entry: **FIXME Lab Catalog Name**.
+. **Log in** to the xref:#RHDP-Portal-Links[RHDP portal].
+. **Search** for the catalog entry: *Product Enablement: Event-Driven Ansible Breakfix lab*
+**.
++
+image::1.png[]
+
 . **Click** on the catalog entry in the search results.
 . On the catalog page, **click** the **Order** button.
 . **Fill out** the required details in the order form.
++
+image::form.png[]
+
 . **Review the warning** at the bottom of the form and **check the box** labeled: +
    *“I confirm that I understand the above warnings.”*
 . **Click** the **Order** button to place your lab order.
 
 === Important Notes:
-- This lab may take approximately **FIXME minutes** to become ready.
+- This lab may take approximately **20 minutes** to become ready.
 - You will receive an **email with access details** once your lab environment is ready.
 - You can also **retrieve lab access** directly from the RHDP portal.
 
