@@ -136,31 +136,31 @@
 <div class="title">Output</div>
 <div class="content">
 <pre>cd 05-lab/
-git clone git@server.example.com:root/rh1-ansible-eda-vars-zabbix.git
-cp -rf project-http rulebooks rh1-ansible-eda-vars-zabbix/
-cd rh1-ansible-eda-vars-zabbix/
+git clone git@server.example.com:root/redhat-ansible-eda-vars-zabbix.git
+cp -rf project-http rulebooks redhat-ansible-eda-vars-zabbix/
+cd redhat-ansible-eda-vars-zabbix/
 git add . ; git commit -m add ; git push</pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[ec2-user@node1 ~]$ cd 05-lab/
-[ec2-user@node1 05-lab]$ git clone git@server.example.com:root/rh1-ansible-eda-vars-zabbix.git
-[ec2-user@node1 05-lab]$ cp -rf project-http rulebooks rh1-ansible-eda-vars-zabbix/
-[ec2-user@node1 05-lab]$ cd rh1-ansible-eda-vars-zabbix/
-[ec2-user@node1 rh1-ansible-eda-vars-zabbix]$
+[ec2-user@node1 05-lab]$ git clone git@server.example.com:root/redhat-ansible-eda-vars-zabbix.git
+[ec2-user@node1 05-lab]$ cp -rf project-http rulebooks redhat-ansible-eda-vars-zabbix/
+[ec2-user@node1 05-lab]$ cd redhat-ansible-eda-vars-zabbix/
+[ec2-user@node1 redhat-ansible-eda-vars-zabbix]$
 [ec2-user@node1 05-lab]$ git add . ; git commit -m add ; git push</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>In Ansible Automation Platform, we will create the <em>rh1-ansible-eda-vars-zabbix</em> project in Automation Decisions:</p>
+<p>In Ansible Automation Platform, we will create the <em>redhat-ansible-eda-vars-zabbix</em> project in Automation Decisions:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Name rh1-ansible-eda-vars-zabbix
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Name redhat-ansible-eda-vars-zabbix
 Organization Default
 Source control type Git
-Source control URL https://server.example.com/root/rh1-ansible-eda-vars-zabbix.git
+Source control URL https://server.example.com/root/redhat-ansible-eda-vars-zabbix.git
 Source control credential: gitlab
 Options
 uncheck box Verify SSL</code></pre>
@@ -195,9 +195,9 @@ uncheck box Verify SSL</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Name: rh1-ansible-eda-vars-zabbix
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Name: redhat-ansible-eda-vars-zabbix
 Organization: Default
-Project: rh1-ansible-eda-vars-zabbix
+Project: redhat-ansible-eda-vars-zabbix
 Rulebook: webhook-zabbix.yml
 Credential: AAP
 Decision Enviroment: Default Decision Enviroment
@@ -293,7 +293,7 @@ The big problem is creating the correct regular expression for the payload to ru
 </table>
 </div>
 <div class="paragraph">
-<p>Now it&#8217;s time to edit the <em>05-lab/rh1-ansible-eda-vars-zabbix/rulebooks/webhook-zabbix.yml</em> file and find the correct expression.</p>
+<p>Now it&#8217;s time to edit the <em>05-lab/redhat-ansible-eda-vars-zabbix/rulebooks/webhook-zabbix.yml</em> file and find the correct expression.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -342,14 +342,14 @@ Your rulebook will not start due to another error. Try to resolve it.
 <h2 id="_lets_now_configure_automation_execution"><a class="anchor" href="#_lets_now_configure_automation_execution"></a>Let&#8217;s now configure Automation Execution.</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Let&#8217;s create the <em>rh1-ansible-eda-vars-zabbix</em> project:</p>
+<p>Let&#8217;s create the <em>redhat-ansible-eda-vars-zabbix</em> project:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">name: rh1-ansible-eda-vars-zabbix
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">name: redhat-ansible-eda-vars-zabbix
 Organization: Default
 Source Control type: git
-Source control URL: git@server.example.com:root/rh1-ansible-eda-vars-zabbix.git
+Source control URL: git@server.example.com:root/redhat-ansible-eda-vars-zabbix.git
 Source control Credential: gitlab
 Check box:
     Clean,
@@ -415,7 +415,7 @@ In Automation Execution section in menu:Templates[Create Template &gt; Create Jo
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Name: project-http
-Project: rh1-ansible-eda-vars-zabbix
+Project: redhat-ansible-eda-vars-zabbix
 Playbook: project-http/playbook.yml
 Credentials: ec2-user
 Inventory: project-http</code></pre>
@@ -527,7 +527,7 @@ The success of this lab is that Ansible starts HTTPD on <strong>node1</strong> w
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Name: project-http
-Project: rh1-ansible-eda-vars-zabbix
+Project: redhat-ansible-eda-vars-zabbix
 Playbook: project-http/playbook.yml
 Credentials: ec2-user
 Inventory: project-http
@@ -557,7 +557,7 @@ Extra variable: checkbox as Prompt on launch</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd 05-lab/
-cd rh1-ansible-eda-vars-zabbix/
+cd redhat-ansible-eda-vars-zabbix/
 vim project-http/playbook.yml
 git add . ; git commit -m add ; git push</code></pre>
 </div>
@@ -566,9 +566,9 @@ git add . ; git commit -m add ; git push</code></pre>
 <div class="title">Output</div>
 <div class="content">
 <pre>[ec2-user@node1 ~]$ cd 05-lab/
-[ec2-user@node1 05-lab]$ cd rh1-ansible-eda-vars-zabbix/
-[ec2-user@node1 rh1-ansible-eda-vars-zabbix]$
-[ec2-user@node1 rh1-ansible-eda-vars-zabbix]$ vim project-http/playbook.yml
+[ec2-user@node1 05-lab]$ cd redhat-ansible-eda-vars-zabbix/
+[ec2-user@node1 redhat-ansible-eda-vars-zabbix]$
+[ec2-user@node1 redhat-ansible-eda-vars-zabbix]$ vim project-http/playbook.yml
 [ec2-user@node1 05-lab]$ git add . ; git commit -m add ; git push</pre>
 </div>
 </div>

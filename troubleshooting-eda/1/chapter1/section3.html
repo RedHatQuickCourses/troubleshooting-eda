@@ -126,7 +126,7 @@
 <h2 id="in_this_bfx"><a class="anchor" href="#in_this_bfx"></a>What is in this break-fix</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In this section, you will configure Ansible Automation Platform to receive events from Event-Driven Ansible (Automation Decisions). After sending the curl command with the host parameters, you need to validate if the Job Template <em>rh1-aap-extra-vars-eda</em> will execute with the Event-Driven Ansible (Automation Decisions) event.</p>
+<p>In this section, you will configure Ansible Automation Platform to receive events from Event-Driven Ansible (Automation Decisions). After sending the curl command with the host parameters, you need to validate if the Job Template <em>redhat-aap-extra-vars-eda</em> will execute with the Event-Driven Ansible (Automation Decisions) event.</p>
 </div>
 </div>
 </div>
@@ -213,45 +213,45 @@ drwx------. 10 ec2-user ec2-user 4.0K Nov 26 14:05 ..
 </div>
 </div>
 <div class="paragraph">
-<p>On <strong>node1</strong>, pull the <em>rh1-aap-extra-vars-eda</em> repository and copy both folders into <em>rh1-aap-extra-vars-eda</em>:</p>
+<p>On <strong>node1</strong>, pull the <em>redhat-aap-extra-vars-eda</em> repository and copy both folders into <em>redhat-aap-extra-vars-eda</em>:</p>
 </div>
 <div class="listingblock execute">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">cd 03-lab/
-git clone git@server.example.com:root/rh1-aap-extra-vars-eda.git
-cp -rf rh1-eda-example/*  rh1-aap-extra-vars-eda/</code></pre>
+git clone git@server.example.com:root/redhat-aap-extra-vars-eda.git
+cp -rf redhat-eda-example/*  redhat-aap-extra-vars-eda/</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Output</div>
 <div class="content">
 <pre>[ec2-user@node1 ~]$ cd 03-lab/
-[ec2-user@node1 03-lab]$ git clone git@server.example.com:root/rh1-aap-extra-vars-eda.git
-[ec2-user@node1 03-lab]$ cp -rf rh1-eda-example/*  rh1-aap-extra-vars-eda/</pre>
+[ec2-user@node1 03-lab]$ git clone git@server.example.com:root/redhat-aap-extra-vars-eda.git
+[ec2-user@node1 03-lab]$ cp -rf redhat-eda-example/*  redhat-aap-extra-vars-eda/</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Change directory to <em>rh1-aap-extra-vars-eda</em> and commit to git:</p>
+<p>Change directory to <em>redhat-aap-extra-vars-eda</em> and commit to git:</p>
 </div>
 <div class="listingblock execute">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">cd rh1-aap-extra-vars-eda/
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">cd redhat-aap-extra-vars-eda/
 git config --global user.name "ec2-user"
 git config --global user.email ec2-user@localhost
 git add .
-git commit -m "RH1"
+git commit -m "Red Hat"
 git push</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Output</div>
 <div class="content">
-<pre>[ec2-user@node1 03-lab]$ cd rh1-aap-extra-vars-eda/
-[ec2-user@node1 rh1-aap-extra-vars-eda]$ git config --global user.name "ec2-user"
-[ec2-user@node1 rh1-aap-extra-vars-eda]$ git config --global user.email ec2-user@localhost
-[ec2-user@node1 rh1-aap-extra-vars-eda]$ git add .
-[ec2-user@node1 rh1-aap-extra-vars-eda]$ git commit -m "RH1"
-[ec2-user@node1 rh1-aap-extra-vars-eda]$ git push</pre>
+<pre>[ec2-user@node1 03-lab]$ cd redhat-aap-extra-vars-eda/
+[ec2-user@node1 redhat-aap-extra-vars-eda]$ git config --global user.name "ec2-user"
+[ec2-user@node1 redhat-aap-extra-vars-eda]$ git config --global user.email ec2-user@localhost
+[ec2-user@node1 redhat-aap-extra-vars-eda]$ git add .
+[ec2-user@node1 redhat-aap-extra-vars-eda]$ git commit -m "Red Hat"
+[ec2-user@node1 redhat-aap-extra-vars-eda]$ git push</pre>
 </div>
 </div>
 </div>
@@ -400,14 +400,14 @@ SCM Private Key: Copy your bastion private key: cat .ssh/vkhtjkey.pem</code></pr
 </div>
 </div>
 <div class="paragraph">
-<p>Create a project in Ansible Automation Platform to sync the <em>rh1-aap-extra-vars-eda</em> project:</p>
+<p>Create a project in Ansible Automation Platform to sync the <em>redhat-aap-extra-vars-eda</em> project:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Name: rh1-aap-extra-vars-eda
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Name: redhat-aap-extra-vars-eda
 Organization: Default
 credential control type: git
-Source control URL: git@server.example.com:root/rh1-aap-extra-vars-eda.git
+Source control URL: git@server.example.com:root/redhat-aap-extra-vars-eda.git
 Source control credential: gitlab
 check box:
   Clean
@@ -424,14 +424,14 @@ check box:
 <p>Now click btn:[Create project]:</p>
 </div>
 <div class="paragraph">
-<p>Once the project finishes syncing, create the <strong>job_template</strong> in Ansible Automation Platform with the project name <em>rh1-aap-extra-vars-eda</em>:</p>
+<p>Once the project finishes syncing, create the <strong>job_template</strong> in Ansible Automation Platform with the project name <em>redhat-aap-extra-vars-eda</em>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Name: rh1-aap-extra-vars-eda
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Name: redhat-aap-extra-vars-eda
 Inventory: localhost
-Project: rh1-aap-extra-vars-eda
-Playbook: playbook/hello-rh1.yml
+Project: redhat-aap-extra-vars-eda
+Playbook: playbook/hello-redhat.yml
 Credentials: ec2-user</code></pre>
 </div>
 </div>
@@ -486,10 +486,10 @@ Password: redhat..123</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Name: rh1-aap-extra-vars-eda
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Name: redhat-aap-extra-vars-eda
 Organization: Default
 Source control type: git
-Source control URL: https://server.example.com/root/rh1-aap-extra-vars-eda.git
+Source control URL: https://server.example.com/root/redhat-aap-extra-vars-eda.git
 Source control credential: gitlab
 Disable verify SSL: Uncheck</code></pre>
 </div>
@@ -582,7 +582,7 @@ Password: R3dh4t1!</code></pre>
 Organization: Default
 Credential type: Container Registry
 authentication URL: registry.redhat.io
-username: 1979710|rh1lab20
+username: 1979710|redhatlab20
 Password or Token: (The token is located in /home/ec2-user/03-lab/registry-credentials.txt one node1)</code></pre>
 </div>
 </div>
@@ -638,9 +638,9 @@ The Rulebook will not be able to be located. You need to resolve this issue.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Name: rh1-aap-extra-vars-eda
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Name: redhat-aap-extra-vars-eda
 Organization: Default
-Project: rh1-aap-extra-vars-eda
+Project: redhat-aap-extra-vars-eda
 Rulebook: webhook-example.yml
 Credential: AAP
 Decision environment: Default Decision Environment</code></pre>
@@ -668,7 +668,7 @@ Decision environment: Default Decision Environment</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Click the rulebook: <em>rh1-aap-extra-vars-eda</em></p>
+<p>Click the rulebook: <em>redhat-aap-extra-vars-eda</em></p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -701,7 +701,7 @@ curl -H 'Content-Type: application/json' -d '{"event_name": "Hello", "host_host"
 </div>
 </div>
 <div class="paragraph">
-<p>After sending the curl. The Job Template <em>rh1-aap-extra-vars-eda</em> will run.</p>
+<p>After sending the curl. The Job Template <em>redhat-aap-extra-vars-eda</em> will run.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -784,14 +784,14 @@ You need to resolve this error:
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[ec2-user@node1 ~]$ cd 03-lab/
 [ec2-user@node1 03-lab]$ ls
-rh1-aap-extra-vars-eda  rh1-eda-example
-[ec2-user@node1 03-lab]$ cd rh1-aap-extra-vars-eda/
-[ec2-user@node1 rh1-aap-extra-vars-eda]$ ls
+redhat-aap-extra-vars-eda  redhat-eda-example
+[ec2-user@node1 03-lab]$ cd redhat-aap-extra-vars-eda/
+[ec2-user@node1 redhat-aap-extra-vars-eda]$ ls
 playbook  README.md  rulebook
-[ec2-user@node1 rh1-aap-extra-vars-eda]$ mv rulebook rulebooks
-[ec2-user@node1 rh1-aap-extra-vars-eda]$ git add .
-[ec2-user@node1 rh1-aap-extra-vars-eda]$ git commit -m add
-[ec2-user@node1 rh1-aap-extra-vars-eda]$ git push</code></pre>
+[ec2-user@node1 redhat-aap-extra-vars-eda]$ mv rulebook rulebooks
+[ec2-user@node1 redhat-aap-extra-vars-eda]$ git add .
+[ec2-user@node1 redhat-aap-extra-vars-eda]$ git commit -m add
+[ec2-user@node1 redhat-aap-extra-vars-eda]$ git push</code></pre>
 </div>
 </div>
 <div class="olist arabic">
@@ -814,7 +814,7 @@ playbook  README.md  rulebook
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Remove <code>remote_user: root</code> the playbook <em>hello-rh1.yml</em>.</p>
+<p>Remove <code>remote_user: root</code> the playbook <em>hello-redhat.yml</em>.</p>
 </li>
 </ol>
 </div>
@@ -822,11 +822,11 @@ playbook  README.md  rulebook
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[ec2-user@node1 ~]$ cd 03-lab/
 [ec2-user@node1 03-lab]$ ls
-rh1-aap-extra-vars-eda  rh1-eda-example
-[ec2-user@node1 03-lab]$ cd rh1-aap-extra-vars-eda/
-[ec2-user@node1 rh1-aap-extra-vars-eda]$ ls
+redhat-aap-extra-vars-eda  redhat-eda-example
+[ec2-user@node1 03-lab]$ cd redhat-aap-extra-vars-eda/
+[ec2-user@node1 redhat-aap-extra-vars-eda]$ ls
 playbook  README.md  rulebooks
-[ec2-user@node1 rh1-aap-extra-vars-eda]$ vim playbook/hello-rh1.yml</code></pre>
+[ec2-user@node1 redhat-aap-extra-vars-eda]$ vim playbook/hello-redhat.yml</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -853,7 +853,7 @@ fatal: [localhost]: FAILED! &#8658; {"msg": "'hosts_update' is undefined. 'hosts
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>In job_template <em>rh1-aap-extra-vars-eda</em>, enable <strong>Prompt on launch</strong> in Extra variables.</p>
+<p>In job_template <em>redhat-aap-extra-vars-eda</em>, enable <strong>Prompt on launch</strong> in Extra variables.</p>
 </li>
 </ol>
 </div>
@@ -876,7 +876,7 @@ curl -H 'Content-Type: application/json' -d '{"event_name": "Hello", "host_host"
 </div>
 </div>
 <div class="paragraph">
-<p>After sending the <strong>curl</strong>. The Job Template <em>rh1-aap-extra-vars-eda</em> will run.</p>
+<p>After sending the <strong>curl</strong>. The Job Template <em>redhat-aap-extra-vars-eda</em> will run.</p>
 </div>
 </div>
 </div>

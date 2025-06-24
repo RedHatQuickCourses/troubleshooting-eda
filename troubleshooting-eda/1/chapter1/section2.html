@@ -159,7 +159,7 @@ ls</code></pre>
 <div class="content">
 <pre>[ec2-user@node1 ~]$ cd 02-lab
 [ec2-user@node1 02-lab]$ ls
-hello-rh1.yml  inventory.yml  webhook-example.yml
+hello-redhat.yml  inventory.yml  webhook-example.yml
 [ec2-user@node1 02-lab]$</pre>
 </div>
 </div>
@@ -169,7 +169,7 @@ hello-rh1.yml  inventory.yml  webhook-example.yml
 <div class="listingblock execute">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">less webhook-example.yml
-less hello-rh1.yml
+less hello-redhat.yml
 less inventory.yml</code></pre>
 </div>
 </div>
@@ -254,7 +254,7 @@ node1                      : ok=0    changed=0    unreachable=1    failed=0    s
 </div>
 </li>
 <li>
-<p>Break out of the rulebook by kbd:[Ctrl-C] and note the error generated after the event is captured by the <code>ansible-rulebook</code> command and try to resolve it.</p>
+<p>Break out of the rulebook by <code>[Ctrl-C]</code> and note the error generated after the event is captured by the <code>ansible-rulebook</code> command and try to resolve it.</p>
 </li>
 </ol>
 </div>
@@ -361,10 +361,10 @@ fatal: [node1]: UNREACHABLE! =&gt; {"changed": false, "msg": "Failed to create t
 <p>Ensure you are in the <em>02-lab</em> directory on <strong>node1</strong>.</p>
 </li>
 <li>
-<p>Edit the <em>hello-rh1.yml</em> playbook and change <code>remote_user: root</code> to <code>remote_user: ec2-user</code>.</p>
+<p>Edit the <em>hello-redhat.yml</em> playbook and change <code>remote_user: root</code> to <code>remote_user: ec2-user</code>.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">vi hello-rh1.yml</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">vi hello-redhat.yml</code></pre>
 </div>
 </div>
 </li>
@@ -372,7 +372,7 @@ fatal: [node1]: UNREACHABLE! =&gt; {"changed": false, "msg": "Failed to create t
 <p>While the rulebook is still running on <strong>node1</strong>, send the event from the <strong>bastion</strong> host again.</p>
 </li>
 <li>
-<p>Note that the playbook runs successfully this time, and the <code>Install tcpdump</code> task is executed. kbd:[Ctrl-C] to exit the rulebook on node1 and continue to the next section.</p>
+<p>Note that the playbook runs successfully this time, and the <code>Install tcpdump</code> task is executed. <code>[Ctrl-C]</code> to exit the rulebook on node1 and continue to the next section.</p>
 </li>
 </ol>
 </div>

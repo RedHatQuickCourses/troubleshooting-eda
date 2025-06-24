@@ -181,7 +181,7 @@ ls</code></pre>
 <div class="content">
 <pre>[ec2-user@node1 ~]$ cd 01-lab/
 [ec2-user@node1 01-lab]$ ls
-hello-rh1.yml  inventory.yml  webhook-example.yml
+hello-redhat.yml  inventory.yml  webhook-example.yml
 [ec2-user@node1 01-lab]$</pre>
 </div>
 </div>
@@ -191,7 +191,7 @@ hello-rh1.yml  inventory.yml  webhook-example.yml
 <div class="listingblock execute">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">less webhook-example.yml
-less hello-rh1.yml
+less hello-redhat.yml
 less inventory.yml</code></pre>
 </div>
 </div>
@@ -326,9 +326,9 @@ If you encounter the error <strong>"curl: (7) Failed to connect to node1 port 50
 </div>
 <hr>
 <div class="paragraph">
-<p><strong>PAUSE</strong>
-'''</p>
+<p><strong>PAUSE</strong></p>
 </div>
+<hr>
 </div>
 </div>
 <div class="sect1">
@@ -344,9 +344,9 @@ If you encounter the error <strong>"curl: (7) Failed to connect to node1 port 50
 </div>
 <hr>
 <div class="paragraph">
-<p><strong>CONTINUE</strong>
-'''</p>
+<p><strong>CONTINUE</strong></p>
 </div>
+<hr>
 </div>
 </div>
 </div>
@@ -467,7 +467,7 @@ ok: [localhost]
 
 TASK [debug] *******************************************************************
 ok: [localhost] =&gt; {
-    "msg": "Hello RH1"
+    "msg": "Hello Red Hat"
 }
 
 PLAY RECAP *********************************************************************
@@ -477,7 +477,7 @@ localhost                  : ok=2    changed=0    unreachable=0    failed=0    s
 </div>
 </div>
 <div class="paragraph">
-<p>Observe that Event-Driven captured the <strong>Hello</strong> event as mentioned in the rulebook and executed the playbook to print the <strong>Hello RH1</strong> message.</p>
+<p>Observe that Event-Driven captured the <strong>Hello</strong> event as mentioned in the rulebook and executed the playbook to print the <strong>Hello Red Hat</strong> message.</p>
 </div>
 </li>
 </ol>
