@@ -3,7 +3,7 @@
 == Instructions to Launch Your Lab on the Red Hat Demo Platform (RHDP)
 
 . **Log in** to the xref:#RHDP-Portal-Links[RHDP portal].
-. **Search** for the catalog entry: *Product Enablement: Event-Driven Ansible Breakfix lab*
+. **Search** for the catalog entry: *Product Enablement: Event-Driven Ansible Troubleshooting Lab*
 **.
 +
 image::1.png[]

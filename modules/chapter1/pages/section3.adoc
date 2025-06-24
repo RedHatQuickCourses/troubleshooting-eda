@@ -3,7 +3,7 @@
 [#in_this_bfx]
 == What is in this break-fix
 
-In this section, you will configure Ansible Automation Platform to receive events from Event-Driven Ansible (Automation Decisions). After sending the curl command with the host parameters, you need to validate if the Job Template _rh1-aap-extra-vars-eda_ will execute with the Event-Driven Ansible (Automation Decisions) event.
+In this section, you will configure Ansible Automation Platform to receive events from Event-Driven Ansible (Automation Decisions). After sending the curl command with the host parameters, you need to validate if the Job Template _redhat-aap-extra-vars-eda_ will execute with the Event-Driven Ansible (Automation Decisions) event.
 
 == Let's copy the files:
 
@@ -58,42 +58,42 @@ image::lab003-add004.jpg[lab003-add004,100%,100%,link=self,window=_blank]
 
 image::lab003-add005.jpg[lab003-add005,100%,100%,link=self,window=_blank]
 
-On *node1*, pull the _rh1-aap-extra-vars-eda_ repository and copy both folders into _rh1-aap-extra-vars-eda_:
+On *node1*, pull the _redhat-aap-extra-vars-eda_ repository and copy both folders into _redhat-aap-extra-vars-eda_:
 
 [source,sh,role=execute]
 ----
 cd 03-lab/
-git clone git@server.example.com:root/rh1-aap-extra-vars-eda.git
-cp -rf rh1-eda-example/*  rh1-aap-extra-vars-eda/
+git clone git@server.example.com:root/redhat-aap-extra-vars-eda.git
+cp -rf redhat-eda-example/*  redhat-aap-extra-vars-eda/
 ----
 
 .Output
 ----
 [ec2-user@node1 ~]$ cd 03-lab/
-[ec2-user@node1 03-lab]$ git clone git@server.example.com:root/rh1-aap-extra-vars-eda.git
-[ec2-user@node1 03-lab]$ cp -rf rh1-eda-example/*  rh1-aap-extra-vars-eda/
+[ec2-user@node1 03-lab]$ git clone git@server.example.com:root/redhat-aap-extra-vars-eda.git
+[ec2-user@node1 03-lab]$ cp -rf redhat-eda-example/*  redhat-aap-extra-vars-eda/
 ----
 
-Change directory to _rh1-aap-extra-vars-eda_ and commit to git:
+Change directory to _redhat-aap-extra-vars-eda_ and commit to git:
 
 [source,sh,role=execute]
 ----
-cd rh1-aap-extra-vars-eda/
+cd redhat-aap-extra-vars-eda/
 git config --global user.name "ec2-user"
 git config --global user.email ec2-user@localhost
 git add .
-git commit -m "RH1"
+git commit -m "Red Hat"
 git push 
 ----
 
 .Output
 ----
-[ec2-user@node1 03-lab]$ cd rh1-aap-extra-vars-eda/
-[ec2-user@node1 rh1-aap-extra-vars-eda]$ git config --global user.name "ec2-user"
-[ec2-user@node1 rh1-aap-extra-vars-eda]$ git config --global user.email ec2-user@localhost
-[ec2-user@node1 rh1-aap-extra-vars-eda]$ git add .
-[ec2-user@node1 rh1-aap-extra-vars-eda]$ git commit -m "RH1"
-[ec2-user@node1 rh1-aap-extra-vars-eda]$ git push 
+[ec2-user@node1 03-lab]$ cd redhat-aap-extra-vars-eda/
+[ec2-user@node1 redhat-aap-extra-vars-eda]$ git config --global user.name "ec2-user"
+[ec2-user@node1 redhat-aap-extra-vars-eda]$ git config --global user.email ec2-user@localhost
+[ec2-user@node1 redhat-aap-extra-vars-eda]$ git add .
+[ec2-user@node1 redhat-aap-extra-vars-eda]$ git commit -m "Red Hat"
+[ec2-user@node1 redhat-aap-extra-vars-eda]$ git push 
 ----
 
 == Now in Automation Execution(Controller):
@@ -194,14 +194,14 @@ SCM Private Key: Copy your bastion private key: cat .ssh/vkhtjkey.pem
 
 image::lab003-011.jpg[lab003-011,100%,100%,link=self,window=_blank]
 
-Create a project in Ansible Automation Platform to sync the _rh1-aap-extra-vars-eda_ project:
+Create a project in Ansible Automation Platform to sync the _redhat-aap-extra-vars-eda_ project:
 
 [source,bash]
 ----
-Name: rh1-aap-extra-vars-eda
+Name: redhat-aap-extra-vars-eda
 Organization: Default
 credential control type: git
-Source control URL: git@server.example.com:root/rh1-aap-extra-vars-eda.git
+Source control URL: git@server.example.com:root/redhat-aap-extra-vars-eda.git
 Source control credential: gitlab
 check box:
   Clean
@@ -213,14 +213,14 @@ image::lab003-015.jpg[lab003-015,100%,100%,link=self,window=_blank]
 
 Now click btn:[Create project]:
 
-Once the project finishes syncing, create the *job_template* in Ansible Automation Platform with the project name _rh1-aap-extra-vars-eda_:
+Once the project finishes syncing, create the *job_template* in Ansible Automation Platform with the project name _redhat-aap-extra-vars-eda_:
 
 [source,bash]
 ----
-Name: rh1-aap-extra-vars-eda
+Name: redhat-aap-extra-vars-eda
 Inventory: localhost 
-Project: rh1-aap-extra-vars-eda
-Playbook: playbook/hello-rh1.yml
+Project: redhat-aap-extra-vars-eda
+Playbook: playbook/hello-redhat.yml
 Credentials: ec2-user
 ----
 
@@ -255,10 +255,10 @@ Create the project with the following information:
 
 [source,bash]
 ----
-Name: rh1-aap-extra-vars-eda 
+Name: redhat-aap-extra-vars-eda 
 Organization: Default
 Source control type: git
-Source control URL: https://server.example.com/root/rh1-aap-extra-vars-eda.git
+Source control URL: https://server.example.com/root/redhat-aap-extra-vars-eda.git
 Source control credential: gitlab
 Disable verify SSL: Uncheck
 ----
@@ -307,7 +307,7 @@ Name: redhat
 Organization: Default
 Credential type: Container Registry
 authentication URL: registry.redhat.io
-username: 1979710|rh1lab20
+username: 1979710|redhatlab20
 Password or Token: (The token is located in /home/ec2-user/03-lab/registry-credentials.txt one node1)
 ----
 
@@ -336,9 +336,9 @@ Under Automation Decisions > Rulebook Activations, click btn:[Create rulebook ac
 
 [source,bash]
 ----
-Name: rh1-aap-extra-vars-eda
+Name: redhat-aap-extra-vars-eda
 Organization: Default
-Project: rh1-aap-extra-vars-eda
+Project: redhat-aap-extra-vars-eda
 Rulebook: webhook-example.yml
 Credential: AAP
 Decision environment: Default Decision Environment
@@ -355,7 +355,7 @@ Now the activation should show as *Running*:
 
 image::lab003-032.jpg[lab003-032,100%,100%,link=self,window=_blank]
 
-Click the rulebook: _rh1-aap-extra-vars-eda_
+Click the rulebook: _redhat-aap-extra-vars-eda_
 
 image::lab003-033.jpg[lab003-033,100%,100%,link=self,window=_blank]
 
@@ -378,7 +378,7 @@ curl -H 'Content-Type: application/json' -d '{"event_name": "Hello", "host_host"
 ----
 
 
-After sending the curl. The Job Template _rh1-aap-extra-vars-eda_ will run.
+After sending the curl. The Job Template _redhat-aap-extra-vars-eda_ will run.
 
 
 NOTE: You need to resolve this error:
@@ -429,14 +429,14 @@ image::lab03-erro-lab.png[lab03-erro-lab,100%,100%,link=self,window=_blank]
 ----
 [ec2-user@node1 ~]$ cd 03-lab/
 [ec2-user@node1 03-lab]$ ls
-rh1-aap-extra-vars-eda  rh1-eda-example
-[ec2-user@node1 03-lab]$ cd rh1-aap-extra-vars-eda/
-[ec2-user@node1 rh1-aap-extra-vars-eda]$ ls
+redhat-aap-extra-vars-eda  redhat-eda-example
+[ec2-user@node1 03-lab]$ cd redhat-aap-extra-vars-eda/
+[ec2-user@node1 redhat-aap-extra-vars-eda]$ ls
 playbook  README.md  rulebook
-[ec2-user@node1 rh1-aap-extra-vars-eda]$ mv rulebook rulebooks
-[ec2-user@node1 rh1-aap-extra-vars-eda]$ git add .
-[ec2-user@node1 rh1-aap-extra-vars-eda]$ git commit -m add
-[ec2-user@node1 rh1-aap-extra-vars-eda]$ git push 
+[ec2-user@node1 redhat-aap-extra-vars-eda]$ mv rulebook rulebooks
+[ec2-user@node1 redhat-aap-extra-vars-eda]$ git add .
+[ec2-user@node1 redhat-aap-extra-vars-eda]$ git commit -m add
+[ec2-user@node1 redhat-aap-extra-vars-eda]$ git push 
 ----
 
 . Disable host in inventory:
@@ -445,17 +445,17 @@ playbook  README.md  rulebook
   
 image::lab003-007.jpg[lab003-006,100%,100%,link=self,window=_blank]
 
-. Remove `remote_user: root` the playbook _hello-rh1.yml_.
+. Remove `remote_user: root` the playbook _hello-redhat.yml_.
 
 [source,bash]
 ----
 [ec2-user@node1 ~]$ cd 03-lab/
 [ec2-user@node1 03-lab]$ ls
-rh1-aap-extra-vars-eda  rh1-eda-example
-[ec2-user@node1 03-lab]$ cd rh1-aap-extra-vars-eda/
-[ec2-user@node1 rh1-aap-extra-vars-eda]$ ls
+redhat-aap-extra-vars-eda  redhat-eda-example
+[ec2-user@node1 03-lab]$ cd redhat-aap-extra-vars-eda/
+[ec2-user@node1 redhat-aap-extra-vars-eda]$ ls
 playbook  README.md  rulebooks
-[ec2-user@node1 rh1-aap-extra-vars-eda]$ vim playbook/hello-rh1.yml
+[ec2-user@node1 redhat-aap-extra-vars-eda]$ vim playbook/hello-redhat.yml
 ----
 Save the file.
 
@@ -466,7 +466,7 @@ NOTE: fatal: [localhost]: FAILED! => {"msg": "'hosts_update' is undefined. 'host
 
 Make this configuration:
 
-. In job_template _rh1-aap-extra-vars-eda_, enable *Prompt on launch* in Extra variables.
+. In job_template _redhat-aap-extra-vars-eda_, enable *Prompt on launch* in Extra variables.
 
 image::lab003-add013.png[lab003-add013,100%,100%,link=self,window=_blank]
 
@@ -478,6 +478,6 @@ ssh node1
 curl -H 'Content-Type: application/json' -d '{"event_name": "Hello", "host_host": "node1.example.com" }' controller:6000/endpoint
 ----
 
-After sending the *curl*. The Job Template _rh1-aap-extra-vars-eda_ will run.
+After sending the *curl*. The Job Template _redhat-aap-extra-vars-eda_ will run.
 
 

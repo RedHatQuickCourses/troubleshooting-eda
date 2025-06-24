@@ -3,7 +3,7 @@
 [#in_this_bfx]
 == What is in this break-fix
 
-In this section, we will send a curl to Event-Driven Ansible (Automation Decisions). Event-Driven Ansible (Automation Decisions) needs to run the Jobs Template: _rh1-aap-extra-vars-eda_
+In this section, we will send a curl to Event-Driven Ansible (Automation Decisions). Event-Driven Ansible (Automation Decisions) needs to run the Jobs Template: _redhat-aap-extra-vars-eda_
 
 
 == Add a node in Zabbix:

@@ -46,7 +46,7 @@ ls
 ----
 [ec2-user@node1 ~]$ cd 01-lab/
 [ec2-user@node1 01-lab]$ ls
-hello-rh1.yml  inventory.yml  webhook-example.yml
+hello-redhat.yml  inventory.yml  webhook-example.yml
 [ec2-user@node1 01-lab]$ 
 ----
 
@@ -55,7 +55,7 @@ hello-rh1.yml  inventory.yml  webhook-example.yml
 [source,sh,role=execute]
 ----
 less webhook-example.yml
-less hello-rh1.yml
+less hello-redhat.yml
 less inventory.yml
 ----
 
@@ -132,7 +132,9 @@ NOTE: If you encounter the error *"curl: (7) Failed to connect to node1 port 500
 This concludes your first troubleshooting activity. Please press `[Ctrl-C]` to exit the `ansible-rulebook` on **node1** and proceed to the next activity.
 
 '''
+
 **PAUSE**
+
 '''
 
 == Before moving ahead 
@@ -144,7 +146,9 @@ This concludes your first troubleshooting activity. Please press `[Ctrl-C]` to e
 **Once you have tried, continue to the next section for guided steps to verify your approach or learn an alternate solution.**
 
 '''
+
 **CONTINUE**
+
 '''
 
 [#guided_solution]
@@ -244,7 +248,7 @@ ok: [localhost]
 
 TASK [debug] *******************************************************************
 ok: [localhost] => {
-    "msg": "Hello RH1"
+    "msg": "Hello Red Hat"
 }
 
 PLAY RECAP *********************************************************************
@@ -253,6 +257,6 @@ localhost                  : ok=2    changed=0    unreachable=0    failed=0    s
 2024-11-29 09:22:11,027 - ansible_rulebook.action.run_playbook - INFO - Ansible runner rc: 0, status: successful
 ----
 +
-Observe that Event-Driven captured the *Hello* event as mentioned in the rulebook and executed the playbook to print the *Hello RH1* message.
+Observe that Event-Driven captured the *Hello* event as mentioned in the rulebook and executed the playbook to print the *Hello Red Hat* message.
 
 Press kbd:[Ctrl-C] to exit the `ansible-rulebook` on **node1**.

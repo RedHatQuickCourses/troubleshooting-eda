@@ -11,32 +11,32 @@ Add the files inside this folder to git.
 .Output
 ----
 cd 05-lab/
-git clone git@server.example.com:root/rh1-ansible-eda-vars-zabbix.git
-cp -rf project-http rulebooks rh1-ansible-eda-vars-zabbix/
-cd rh1-ansible-eda-vars-zabbix/
+git clone git@server.example.com:root/redhat-ansible-eda-vars-zabbix.git
+cp -rf project-http rulebooks redhat-ansible-eda-vars-zabbix/
+cd redhat-ansible-eda-vars-zabbix/
 git add . ; git commit -m add ; git push
 ----
 
 [source,bash]
 ----
 [ec2-user@node1 ~]$ cd 05-lab/
-[ec2-user@node1 05-lab]$ git clone git@server.example.com:root/rh1-ansible-eda-vars-zabbix.git
-[ec2-user@node1 05-lab]$ cp -rf project-http rulebooks rh1-ansible-eda-vars-zabbix/
-[ec2-user@node1 05-lab]$ cd rh1-ansible-eda-vars-zabbix/
-[ec2-user@node1 rh1-ansible-eda-vars-zabbix]$
+[ec2-user@node1 05-lab]$ git clone git@server.example.com:root/redhat-ansible-eda-vars-zabbix.git
+[ec2-user@node1 05-lab]$ cp -rf project-http rulebooks redhat-ansible-eda-vars-zabbix/
+[ec2-user@node1 05-lab]$ cd redhat-ansible-eda-vars-zabbix/
+[ec2-user@node1 redhat-ansible-eda-vars-zabbix]$
 [ec2-user@node1 05-lab]$ git add . ; git commit -m add ; git push
 ----
 
-In Ansible Automation Platform, we will create the _rh1-ansible-eda-vars-zabbix_ project in Automation Decisions:
+In Ansible Automation Platform, we will create the _redhat-ansible-eda-vars-zabbix_ project in Automation Decisions:
 
 
 [source,bash]
 ----
 
-Name rh1-ansible-eda-vars-zabbix
+Name redhat-ansible-eda-vars-zabbix
 Organization Default
 Source control type Git
-Source control URL https://server.example.com/root/rh1-ansible-eda-vars-zabbix.git
+Source control URL https://server.example.com/root/redhat-ansible-eda-vars-zabbix.git
 Source control credential: gitlab
 Options
 uncheck box Verify SSL
@@ -60,9 +60,9 @@ Add the following information:
 
 [source,bash]
 ----
-Name: rh1-ansible-eda-vars-zabbix
+Name: redhat-ansible-eda-vars-zabbix
 Organization: Default
-Project: rh1-ansible-eda-vars-zabbix
+Project: redhat-ansible-eda-vars-zabbix
 Rulebook: webhook-zabbix.yml
 Credential: AAP
 Decision Enviroment: Default Decision Enviroment
@@ -108,7 +108,7 @@ image::lab005-013.jpg[lab005-013,100%,100%,link=self,window=_blank]
 
 NOTE: The big problem is creating the correct regular expression for the payload to run.
 
-Now it's time to edit the _05-lab/rh1-ansible-eda-vars-zabbix/rulebooks/webhook-zabbix.yml_ file and find the correct expression.
+Now it's time to edit the _05-lab/redhat-ansible-eda-vars-zabbix/rulebooks/webhook-zabbix.yml_ file and find the correct expression.
 
 
 [source,yml]
@@ -145,14 +145,14 @@ NOTE: Your rulebook will not start due to another error. Try to resolve it.
 
 == Let's now configure Automation Execution.
 
-Let's create the _rh1-ansible-eda-vars-zabbix_ project:
+Let's create the _redhat-ansible-eda-vars-zabbix_ project:
 
 [source,bash]
 ----
-name: rh1-ansible-eda-vars-zabbix
+name: redhat-ansible-eda-vars-zabbix
 Organization: Default
 Source Control type: git
-Source control URL: git@server.example.com:root/rh1-ansible-eda-vars-zabbix.git
+Source control URL: git@server.example.com:root/redhat-ansible-eda-vars-zabbix.git
 Source control Credential: gitlab
 Check box: 
     Clean, 
@@ -199,7 +199,7 @@ image::lab005-014.jpg[lab005-014,100%,100%,link=self,window=_blank]
 [source,bash]
 ----
 Name: project-http
-Project: rh1-ansible-eda-vars-zabbix
+Project: redhat-ansible-eda-vars-zabbix
 Playbook: project-http/playbook.yml
 Credentials: ec2-user
 Inventory: project-http
@@ -267,7 +267,7 @@ NOTE: The success of this lab is that Ansible starts HTTPD on *node1* with a Zab
 [source,bash]
 ----
 Name: project-http
-Project: rh1-ansible-eda-vars-zabbix
+Project: redhat-ansible-eda-vars-zabbix
 Playbook: project-http/playbook.yml
 Credentials: ec2-user
 Inventory: project-http
@@ -288,7 +288,7 @@ condition: event.payload.event_name is regex("Apache.*Service is down", ignoreca
 [source,bash]
 ----
 cd 05-lab/
-cd rh1-ansible-eda-vars-zabbix/
+cd redhat-ansible-eda-vars-zabbix/
 vim project-http/playbook.yml
 git add . ; git commit -m add ; git push
 ----
@@ -296,9 +296,9 @@ git add . ; git commit -m add ; git push
 .Output
 ----
 [ec2-user@node1 ~]$ cd 05-lab/
-[ec2-user@node1 05-lab]$ cd rh1-ansible-eda-vars-zabbix/
-[ec2-user@node1 rh1-ansible-eda-vars-zabbix]$
-[ec2-user@node1 rh1-ansible-eda-vars-zabbix]$ vim project-http/playbook.yml
+[ec2-user@node1 05-lab]$ cd redhat-ansible-eda-vars-zabbix/
+[ec2-user@node1 redhat-ansible-eda-vars-zabbix]$
+[ec2-user@node1 redhat-ansible-eda-vars-zabbix]$ vim project-http/playbook.yml
 [ec2-user@node1 05-lab]$ git add . ; git commit -m add ; git push
 ----
 
