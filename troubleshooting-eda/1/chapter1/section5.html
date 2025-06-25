@@ -129,8 +129,12 @@
 <p>In this section, we will configure Zabbix to monitor <strong>node1</strong>. On <strong>node1</strong>, Apache is running. When Apache stops working, Zabbix sends an event to Event-Driven Ansible (Automation Decisions) and runs a job template to solve the problem.
 == Add the playbook and rulebook to git</p>
 </div>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p>Add the files inside this folder to git.</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="title">Output</div>
@@ -152,8 +156,12 @@ git add . ; git commit -m add ; git push</pre>
 [ec2-user@node1 05-lab]$ git add . ; git commit -m add ; git push</code></pre>
 </div>
 </div>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p>In Ansible Automation Platform, we will create the <em>redhat-ansible-eda-vars-zabbix</em> project in Automation Decisions:</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -171,19 +179,27 @@ uncheck box Verify SSL</code></pre>
 <a class="image" href="_images/lab005-001.jpg" target="_blank" rel="noopener"><img src="_images/lab005-001.jpg" alt="lab005-001" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p>Make sure the project syncs successfully:</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="_images/lab005-000.jpg" target="_blank" rel="noopener"><img src="_images/lab005-000.jpg" alt="lab005-000" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p>After creating the project in Automation Decision, create the rulebook.</p>
-</div>
-<div class="paragraph">
-<p>Click btn:[Create rulebook activation]:</p>
+</li>
+<li>
+<p>Click on [Create rulebook activation]:</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -222,78 +238,96 @@ The <em>webhook-zabbix.yml</em> file will not show in Event-Driven. Fix this bef
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>Now, click btn:[Create rulebook activation].</p>
-</div>
-<div class="paragraph">
-<p>Validate if the rulebook is running.</p>
-</div>
-<div class="paragraph">
-<p>Details of how we created the Rulebook:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Now, click on <strong>Create rulebook activation</strong>.</p>
+</li>
+<li>
+<p>Validate if the rulebook is running and here are the details of how we created the Rulebook:</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="_images/lab005-008.jpg" target="_blank" rel="noopener"><img src="_images/lab005-008.jpg" alt="lab005-008" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="paragraph">
-<p>Click btn:[History] to see the issue:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Click on <strong>History</strong> to see the issue:</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="_images/lab005-009.jpg" target="_blank" rel="noopener"><img src="_images/lab005-009.jpg" alt="lab005-009" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p>The rulebook will fail to start due to a port conflict. Stop the <em>eda-debug</em> rulebook.</p>
-</div>
-<div class="paragraph">
+</li>
+<li>
 <p>Click on the running rulebook action in blue:</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="_images/lab005-010.jpg" target="_blank" rel="noopener"><img src="_images/lab005-010.jpg" alt="lab005-010" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p>Check the box:
-Yes, I confirm that I want to disable these rulebook activations.</p>
+<code>Yes, I confirm that I want to disable these rulebook activations.</code></p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="_images/lab005-011.jpg" target="_blank" rel="noopener"><img src="_images/lab005-011.jpg" alt="lab005-011" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="paragraph">
-<p>Click btn:[Disable rulebook activations]</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Click on <strong>Disable rulebook activations</strong>.</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="_images/lab005-012.jpg" target="_blank" rel="noopener"><img src="_images/lab005-012.jpg" alt="lab005-012" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p>Disable Rulebook activation successfully:</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="_images/lab005-013.jpg" target="_blank" rel="noopener"><img src="_images/lab005-013.jpg" alt="lab005-013" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The big problem is creating the correct regular expression for the payload to run.
-</td>
-</tr>
-</table>
+<div class="literalblock">
+<div class="content">
+<pre>NOTE: The big problem is creating the correct regular expression for the payload to run.</pre>
 </div>
-<div class="paragraph">
+</div>
+<div class="ulist">
+<ul>
+<li>
 <p>Now it&#8217;s time to edit the <em>05-lab/redhat-ansible-eda-vars-zabbix/rulebooks/webhook-zabbix.yml</em> file and find the correct expression.</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -316,33 +350,34 @@ The big problem is creating the correct regular expression for the payload to ru
               hosts_update: "{{ event.payload.host_host }}"</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>You only need to edit this line:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>You only need to edit the below line:</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">condition: event.payload.event_name == "Apache: Service is down"</code></pre>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Your rulebook will not start due to another error. Try to resolve it.
-</td>
-</tr>
-</table>
+<div class="literalblock">
+<div class="content">
+<pre>NOTE: Your rulebook will not start due to another error. Try to resolve it.</pre>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_lets_now_configure_automation_execution"><a class="anchor" href="#_lets_now_configure_automation_execution"></a>Let&#8217;s now configure Automation Execution.</h2>
 <div class="sectionbody">
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p>Let&#8217;s create the <em>redhat-ansible-eda-vars-zabbix</em> project:</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -362,11 +397,19 @@ Check box:
 <a class="image" href="_images/lab005-022.png" target="_blank" rel="noopener"><img src="_images/lab005-022.png" alt="lab005-022" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="paragraph">
-<p>Click btn:[Create project].</p>
-</div>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
+<p>Click on <strong>Create project</strong>.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
 <p>Next, create the <strong>project-http</strong> inventory containing only the host <strong>localhost</strong>:</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -379,16 +422,24 @@ Organization: Default</code></pre>
 <a class="image" href="_images/lab005-015.jpg" target="_blank" rel="noopener"><img src="_images/lab005-015.jpg" alt="lab005-015" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="paragraph">
-<p>Click btn:[Create Host]:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Click on <strong>Create Host</strong>:</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="_images/lab005-016.jpg" target="_blank" rel="noopener"><img src="_images/lab005-016.jpg" alt="lab005-016" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p>Now add the host <strong>localhost</strong>:</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -400,12 +451,22 @@ Organization: Default</code></pre>
 <a class="image" href="_images/lab005-017.jpg" target="_blank" rel="noopener"><img src="_images/lab005-017.jpg" alt="lab005-017" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="paragraph">
-<p>Next click btn:[Create Host]:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Next click on <strong>Create Host</strong>:</p>
+</li>
+<li>
+<p>Create the job template:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>In Automation Execution section in menu:Templates[Create Template &gt; Create Job Template]:</p>
+</li>
+</ol>
 </div>
-<div class="paragraph">
-<p>Create the job template:
-In Automation Execution section in menu:Templates[Create Template &gt; Create Job Template]:</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -426,23 +487,20 @@ Inventory: project-http</code></pre>
 <div class="sect1">
 <h2 id="_test_the_zabbix_alerts"><a class="anchor" href="#_test_the_zabbix_alerts"></a>Test the Zabbix alerts:</h2>
 <div class="sectionbody">
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p>To do this, stop <strong>httpd</strong> on <strong>node1</strong> and validate in Zabbix the sending of the alert.</p>
+<div class="literalblock">
+<div class="content">
+<pre>NOTE: To generate new alerts we need to start and stop *httpd*.</pre>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-To generate new alerts we need to start and stop <strong>httpd</strong>.
-</td>
-</tr>
-</table>
 </div>
-<div class="paragraph">
+</li>
+<li>
 <p>Next stop the server&#8217;s <strong>httpd</strong>:</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -451,24 +509,36 @@ sudo systemctl stop httpd
 sudo systemctl start httpd</code></pre>
 </div>
 </div>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p>Now Zabbix will send the notification to Event-Driven Ansible:</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="_images/lab005-023.jpg" target="_blank" rel="noopener"><img src="_images/lab005-023.jpg" alt="lab005-023" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p>And Check if the job ran successfully:</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="_images/lab005-020.jpg" target="_blank" rel="noopener"><img src="_images/lab005-020.jpg" alt="lab005-020" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p>Now we can see the logs in Event-Driven Ansible</p>
+</li>
+</ul>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -521,9 +591,6 @@ The success of this lab is that Ansible starts HTTPD on <strong>node1</strong> w
 </li>
 <li>
 <p>Then, the job template should be created with the following parameters:</p>
-</li>
-</ol>
-</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Name: project-http
@@ -539,16 +606,12 @@ Extra variable: checkbox as Prompt on launch</code></pre>
 <a class="image" href="_images/lab005-new001.png" target="_blank" rel="noopener"><img src="_images/lab005-new001.png" alt="lab005-new001" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p>Change <strong>remote_user: root</strong> to <strong>remote_user: ec2-user</strong> in playbook project-http/playbook.yml.</p>
 </li>
 <li>
 <p>Change the condition line in the <em>rulebooks/webhook-zabbix.yml</em> file</p>
-</li>
-</ol>
-</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">condition: event.payload.event_name is regex("Apache.*Service is down", ignorecase=true)</code></pre>
@@ -572,9 +635,9 @@ git add . ; git commit -m add ; git push</code></pre>
 [ec2-user@node1 05-lab]$ git add . ; git commit -m add ; git push</pre>
 </div>
 </div>
-<div class="paragraph">
+</li>
+<li>
 <p>To test the configuration, you can start and stop the Apache service:</p>
-</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">---
@@ -583,17 +646,8 @@ sudo systemctl stop httpd
 ---</code></pre>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Congratulations! You have completed all lab objectives!
-</td>
-</tr>
-</table>
+</li>
+</ol>
 </div>
 </div>
 </div>

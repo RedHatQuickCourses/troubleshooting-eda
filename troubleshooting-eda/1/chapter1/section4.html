@@ -133,9 +133,13 @@
 <div class="sect1">
 <h2 id="_add_a_node_in_zabbix"><a class="anchor" href="#_add_a_node_in_zabbix"></a>Add a node in Zabbix:</h2>
 <div class="sectionbody">
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p>Run the client-zabbix playbook on the Ansible Automation Platform to configure the Zabbix agent on the host <strong>apache001</strong>.
-Log in to Zabbix: <a href="http://server.{subdomain_base}/zabbix/" class="bare" target="_blank" rel="noopener">http://server.{subdomain_base}/zabbix/</a>.</p>
+Log in to Zabbix following the below credentials.</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -148,11 +152,15 @@ Pass: zabbix</code></pre>
 <a class="image" href="_images/lab004-001.jpg" target="_blank" rel="noopener"><img src="_images/lab004-001.jpg" alt="lab004-001" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p>Go to menu:Monitoring[Hosts]:</p>
-</div>
-<div class="paragraph">
-<p>Click btn:[Create host]:</p>
+</li>
+<li>
+<p>Click on <strong>Create host</strong>:</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -164,91 +172,135 @@ Pass: zabbix</code></pre>
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Host name: node1.example.com</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>From the Templates line, click btn:[Select].</p>
+<div class="ulist">
+<ul>
+<li>
+<p>From the Templates line, click on <strong>Select</strong>.</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="_images/lab004-003.jpg" target="_blank" rel="noopener"><img src="_images/lab004-003.jpg" alt="lab004-003" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="paragraph">
-<p>Click btn:[Select] again:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Click on <strong>Select</strong> again:</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="_images/lab004-004.jpg" target="_blank" rel="noopener"><img src="_images/lab004-004.jpg" alt="lab004-004" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p>From the list, select <em>Templates/Operating Systems</em>:</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="_images/lab004-005.jpg" target="_blank" rel="noopener"><img src="_images/lab004-005.jpg" alt="lab004-005" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p>Then, select <em>Linux by Zabbix agent</em></p>
-</div>
-<div class="paragraph">
-<p>Click btn:[Select] to confirm your selection:</p>
+</li>
+<li>
+<p>Click on <strong>Select</strong> to confirm your selection:</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="_images/lab004-006.jpg" target="_blank" rel="noopener"><img src="_images/lab004-006.jpg" alt="lab004-006" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="paragraph">
-<p>Next, add another template. On the Templates line, Click btn:[Select]:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Next, add another template. On the Templates line, Click on [Select]:</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="_images/lab004-007.jpg" target="_blank" rel="noopener"><img src="_images/lab004-007.jpg" alt="lab004-007" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p>Click <em>Templates/Applications</em></p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="_images/lab004-008.jpg" target="_blank" rel="noopener"><img src="_images/lab004-008.jpg" alt="lab004-008" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p>Then, select <em>Apache by Zabbix agent</em></p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="_images/lab004-009.jpg" target="_blank" rel="noopener"><img src="_images/lab004-009.jpg" alt="lab004-009" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="paragraph">
-<p>In Host groups, click btn:[Select] and select <em>Applications</em></p>
+<div class="ulist">
+<ul>
+<li>
+<p>In Host groups, click on [Select] and select <em>Applications</em></p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="_images/lab004-010.jpg" target="_blank" rel="noopener"><img src="_images/lab004-010.jpg" alt="lab004-010" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p>Just below <em>Interfaces</em>, click <strong>Add</strong>, and then click <strong>agent</strong>.</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="_images/lab004-011.jpg" target="_blank" rel="noopener"><img src="_images/lab004-011.jpg" alt="lab004-011" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p>In the <em>Connect to</em> field, change to <strong>DNS</strong>: (IMPORTANT)</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="_images/lab004-012.jpg" target="_blank" rel="noopener"><img src="_images/lab004-012.jpg" alt="lab004-012" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p>Add (in bold) <em>node1.example.com</em>  to the DNS name field:</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -260,16 +312,24 @@ Pass: zabbix</code></pre>
 <a class="image" href="_images/lab004-013.jpg" target="_blank" rel="noopener"><img src="_images/lab004-013.jpg" alt="lab004-013" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="paragraph">
-<p>Now click btn:[Add] on the bottom right of the page.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Now click on <strong>Add</strong> on the bottom right of the page.</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="_images/lab004-014.jpg" target="_blank" rel="noopener"><img src="_images/lab004-014.jpg" alt="lab004-014" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="paragraph">
-<p>Wait 15 seconds. Press btn:[F5] to refresh the browser. When <em>Availability</em> turns green, everything is OK.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Wait 15 seconds. Press on [F5] to refresh the browser. When <em>Availability</em> turns green, everything is OK.</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -291,8 +351,12 @@ For Enable Report problems to Zabbix administrators:, there is a "Disabled" link
 <a class="image" href="_images/lab004-017.jpg" target="_blank" rel="noopener"><img src="_images/lab004-017.jpg" alt="lab004-017" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p>Let&#8217;s enable the Media Type:</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>menu:Alerts[Media Type &gt; Event Driven Ansible]. Click <em>Disabled</em>, and it will change to <em>Enabled</em>:</p>
@@ -302,32 +366,48 @@ For Enable Report problems to Zabbix administrators:, there is a "Disabled" link
 <a class="image" href="_images/lab004-018.jpg" target="_blank" rel="noopener"><img src="_images/lab004-018.jpg" alt="lab004-018" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p>Now go to: menu:Users[Users].</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="_images/lab004-020.jpg" target="_blank" rel="noopener"><img src="_images/lab004-020.jpg" alt="lab004-020" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p>Click on the <em>Admin</em> user.</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="_images/lab004-020.jpg" target="_blank" rel="noopener"><img src="_images/lab004-020.jpg" alt="lab004-021" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="paragraph">
-<p>Click the btn:[Media] tab on the top left:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Click the on <strong>Media</strong> tab on the top left:</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="_images/lab004-021.jpg" target="_blank" rel="noopener"><img src="_images/lab004-021.jpg" alt="lab004-020" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="paragraph">
-<p>Add the (bold font) controller.example.com IP address. First, click btn:[Media], and then btn:[Add] under <strong>Type</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Add the (bold font) controller.example.com IP address. First, click on <strong>Media</strong>, and then on [Add] under <strong>Type</strong>:</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -339,8 +419,12 @@ For Enable Report problems to Zabbix administrators:, there is a "Disabled" link
 <a class="image" href="_images/lab004-023.jpg" target="_blank" rel="noopener"><img src="_images/lab004-023.jpg" alt="lab004-023" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p>To find the IP address, log in to the controller and run <code>ip ad ls</code></p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -366,35 +450,51 @@ Last login: Thu Nov 21 14:12:38 2024 from 192.168.0.144
 [ec2-user@controller ~]$</code></pre>
 </div>
 </div>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p>In this example the IP: 192.168.0.131:<strong>5000</strong></p>
-</div>
-<div class="paragraph">
+</li>
+<li>
 <p>Now add the IP of the controller and the Rulebook port of <strong>5000</strong> in the <em>Send to</em> field:</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">192.168.0.131:5000</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Now click btn:[Add]</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Now click on <strong>Add</strong>.</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="_images/lab004-024.jpg" target="_blank" rel="noopener"><img src="_images/lab004-024.jpg" alt="lab004-024" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="paragraph">
-<p>Click btn:[Update]</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Click on <strong>Update</strong></p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="_images/lab004-025.jpg" target="_blank" rel="noopener"><img src="_images/lab004-025.jpg" alt="lab004-025" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p>Now Zabbix is ​​monitoring <strong>node1</strong>. If there is any alert, it will be sent to Event-Driven.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -420,29 +520,28 @@ git add . ; git commit -m add ; git push</code></pre>
 [ec2-user@node1 eda-debug]$ git add . ; git commit -m add ; git push</pre>
 </div>
 </div>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p>Next create the Rulebook in Automation Decisions to receive the Alerts:</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_from_ansible_automation_platform"><a class="anchor" href="#_from_ansible_automation_platform"></a>From Ansible Automation Platform:</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>Open the URL if you need to: <a href="https://controller.{subdomain_base}/" class="bare" target="_blank" rel="noopener">https://controller.{subdomain_base}/</a></p>
-</div>
-<div class="paragraph">
-<p>Log in with the following credentials:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">User: admin
-Pass: R3dh4t1!</code></pre>
-</div>
-</div>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
+<p>Login to Ansible Automation Platform.</p>
+</li>
+<li>
 <p>First, create the project in menu:Automation Decisions[Projects]:
-Click btn:[Create project], create the project with the following information:</p>
+Click on [Create project], create the project with the following information:</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -464,19 +563,31 @@ Options: uncheck Verify SSL</code></pre>
 <a class="image" href="_images/lab004-028.jpg" target="_blank" rel="noopener"><img src="_images/lab004-028.jpg" alt="lab004-028" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p>After you have created the project, it will sync successfully:</p>
-</div>
-<div class="paragraph">
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
 <p>Create the rulebook:</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="_images/lab004-030.jpg" target="_blank" rel="noopener"><img src="_images/lab004-030.jpg" alt="lab004-030" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="paragraph">
-<p>Click on menu:Automation Decisions[Rulebook Activations] and then click btn:[Create rulebook activation]:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Click on menu:Automation Decisions[Rulebook Activations] and then click on [Create rulebook activation]:</p>
+</li>
+</ol>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -493,30 +604,42 @@ Decision environment: Default Decision Environment</code></pre>
 <a class="image" href="_images/lab004-031.jpg" target="_blank" rel="noopener"><img src="_images/lab004-031.jpg" alt="lab004-031" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p>The rulebook will start:</p>
-</div>
-<div class="paragraph">
+</li>
+<li>
 <p>Stop the apache service for the alert to be sent to Event-Driven.</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="_images/lab004-032.jpg" target="_blank" rel="noopener"><img src="_images/lab004-032.jpg" alt="lab004-032" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p>Click the rulebook name: <strong>eda-debug</strong></p>
-</div>
-<div class="paragraph">
+</li>
+<li>
 <p>Click on History:</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="_images/lab004-033.jpg" target="_blank" rel="noopener"><img src="_images/lab004-033.jpg" alt="lab004-033" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p>Access the <strong>node1</strong> terminal and stop the Apache service:</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -532,37 +655,22 @@ sudo systemctl stop httpd</code></pre>
 <div class="paragraph">
 <p>We will be able to see the Apache alert being sent to Event-Driven on the Zabbix dashboard:</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-It takes about 30 seconds and a browser refresh to show it under Actions.
-</td>
-</tr>
-</table>
+<div class="literalblock">
+<div class="content">
+<pre>NOTE: It takes about 30 seconds and a browser refresh to show it under Actions and The red line under Actions in the Current Problems section. This is a failure you must clear.</pre>
+</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="_images/lab004-034.jpg" target="_blank" rel="noopener"><img src="_images/lab004-034.jpg" alt="lab004-034" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The red line under Actions in the Current Problems section. This is a failure you must clear.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p>Restart <strong>httpd</strong> in the <strong>node1</strong> terminal and clear the error before moving on.</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -575,8 +683,12 @@ sudo systemctl start httpd</code></pre>
 <a class="image" href="_images/lab004-035.jpg" target="_blank" rel="noopener"><img src="_images/lab004-035.jpg" alt="lab004-035" width="100%" height="100%"></a>
 </div>
 </div>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p>In Event-Driven we can see the playload arriving.</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -672,17 +784,12 @@ sudo systemctl start httpd</code></pre>
 <div class="sect1">
 <h2 id="guided_solution"><a class="anchor" href="#guided_solution"></a>Solution Hint</h2>
 <div class="sectionbody">
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If your configuration was successful you will receive the message below during playback.
-</td>
-</tr>
-</table>
+<div class="ulist">
+<ul>
+<li>
+<p>If your configuration was successful you will receive the message below during playback.</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -691,7 +798,7 @@ If your configuration was successful you will receive the message below during p
 </div>
 </div>
 <div class="paragraph">
-<p>In the next lab, we will customize the rulebook to take this event_name as a condition!</p>
+<p>In the next issue, we will customize the rulebook to take this event_name as a condition!</p>
 </div>
 <div class="paragraph">
 <p>We will use this payload to solve the apache problem.</p>
