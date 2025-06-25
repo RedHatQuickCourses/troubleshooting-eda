@@ -34,31 +34,26 @@ drwx------. 10 ec2-user ec2-user 4.0K Nov 26 14:05 ..
 [ec2-user@node1 ~]$ cat .ssh/n66g5key.pub (Change to your ssh pub key)
 ----
 
-Copy the contents of the public key and add it to this link. To do this you will need to hold the kbd:[Shift] key, and then highlight the key and right click to copy.
+- Copy the contents of the public key and add it to this link. To do this you will need to hold the kbd:[Shift] key, and then highlight the key and right click to copy.
 
 image::lab003-git.png[lab003-git,100%,100%,link=self,window=_blank]
 
-Go to User Settings / Preferences / SSH keys
+- Go to User Settings / Preferences / SSH keys
 
 image::lab003-git002.png[lab003-git002,100%,100%,link=self,window=_blank]
 
 
-
-You will need to open and log in to the GitLab server if you have not done so already.
-
-  * URL: https://server.{subdomain_base}/-/user_settings/ssh_keys[window=_blank]
-  * Username: `root`
-  * Password: `redhat..123`
+- You will need to open and log in to the GitLab server using the username `root` and password: `redhat..123`. 
 
 image::lab003-add002.jpg[lab003-add002,100%,100%,link=self,window=_blank]
 
-Click btn:[Add new key] and paste the public key into the *"Key"* box. Give it a title and click btn:[Add key].
+- Click on *Add new key* and paste the public key into the *"Key"* box. Give it a title and click *Add key*.
 
 image::lab003-add004.jpg[lab003-add004,100%,100%,link=self,window=_blank]
 
 image::lab003-add005.jpg[lab003-add005,100%,100%,link=self,window=_blank]
 
-On *node1*, pull the _redhat-aap-extra-vars-eda_ repository and copy both folders into _redhat-aap-extra-vars-eda_:
+- On *node1*, pull the _redhat-aap-extra-vars-eda_ repository and copy both folders into _redhat-aap-extra-vars-eda_:
 
 [source,sh,role=execute]
 ----
@@ -74,7 +69,7 @@ cp -rf redhat-eda-example/*  redhat-aap-extra-vars-eda/
 [ec2-user@node1 03-lab]$ cp -rf redhat-eda-example/*  redhat-aap-extra-vars-eda/
 ----
 
-Change directory to _redhat-aap-extra-vars-eda_ and commit to git:
+- Change directory to _redhat-aap-extra-vars-eda_ and commit to git:
 
 [source,sh,role=execute]
 ----
@@ -98,18 +93,11 @@ git push
 
 == Now in Automation Execution(Controller):
 
-If you have not already opened Ansible Auotomaton Platform, do so now. The URL is: https://controller.{subdomain_base}/[window=_blank]
-Log in with the these credentials
+- Login to Ansible Auotomaton Platform using the information provided on the RHDP page. 
 
-[source,bash]
-----
-User: admin
-Pass: R3dh4t1!
-----
+- Create the inventory. Select menu:Automation Execution[Infrastructure > Inventories].
 
-Create the inventory. Select menu:Automation Execution[Infrastructure > Inventories].
-
-To create the inventory, click btn:[Create inventory] in blue.
+- To create the inventory, click on *Create inventory* in blue.
 
 image::create-inventory-001.jpg[create-inventory-001,100%,100%,link=self,window=_blank]
 
@@ -122,30 +110,28 @@ Organization: Default
 
 image::lab003-002.jpg[lab003-002,100%,100%,link=self,window=_blank]
 
-Now click btn:[Create inventory]:
-
-To add a host to the inventory, click the btn:[Hosts] tab. 
-
+- Now click on *Create inventory*:
+.. To add a host to the inventory, click the on [Hosts] tab. 
++
 image::lab003-003.jpg[lab003-003,100%,100%,link=self,window=_blank]
 
-Click btn:[Create host]:
-
+.. Click on *Create host*:
++
 image::lab003-004.jpg[lab003-004,100%,100%,link=self,window=_blank]
 
-Name: localhost
-
+.. Name: localhost
++
 image::lab003-005.jpg[lab003-005,100%,100%,link=self,window=_blank]
 
-Click btn:[Create host]:
+ .. Click on *Create host*:
 
 Next, create the _ec2-user_ user credential in Ansible Automation Platform.
 
-To create the machine credential in Ansible Automation Platform, we need to get the private key from the *bastion* host.
+- To create the machine credential in Ansible Automation Platform, we need to get the private key from the *bastion* host.
 
 The environment referenced in the lab document is using __.ssh/vkhtjkey.pem__ as the SSH key. Your key will be named differently. 
 
-NOTE: To validate your private key:
-
+ NOTE: To validate your private key:
 
 [source,bash]
 ----
@@ -162,8 +148,8 @@ drwxr-xr-x. 8 lab-user lab-user 4.0K Nov 19 12:41 ..
 [lab-user@bastion ~]$ cat .ssh/vkhtjkey.pem 
 ----
 
-Copy the contents of the private key and create the machine credential:
-
+- Copy the contents of the private key and create the machine credential:
++
 [source,bash]
 ----
 Name: ec2-user
@@ -173,16 +159,15 @@ Username: ec2-user
 SSH Private Key: Copy your bastion private key: cat .ssh/vkhtjkey.pem
 
 ----
-
++
 image::lab003-009.jpg[lab003-009,100%,100%,link=self,window=_blank]
 
-Confirm that you created the _ec2-user_ user:
+- Confirm that you created the _ec2-user_ user:
 
 image::lab003-010.jpg[lab003-010,100%,100%,link=self,window=_blank]
 
-Create the gitlab credential:
-
-
+- Create the gitlab credential:
++
 [source,bash]
 ----
 Name: gitlab
@@ -191,11 +176,11 @@ credential type: Source Control
 Username: root
 SCM Private Key: Copy your bastion private key: cat .ssh/vkhtjkey.pem
 ----
-
++
 image::lab003-011.jpg[lab003-011,100%,100%,link=self,window=_blank]
 
-Create a project in Ansible Automation Platform to sync the _redhat-aap-extra-vars-eda_ project:
-
+- Create a project in Ansible Automation Platform to sync the _redhat-aap-extra-vars-eda_ project:
++
 [source,bash]
 ----
 Name: redhat-aap-extra-vars-eda
@@ -208,13 +193,13 @@ check box:
   Delete
   Update revision on launch
 ----
-
++
 image::lab003-015.jpg[lab003-015,100%,100%,link=self,window=_blank]
 
-Now click btn:[Create project]:
+- Now click on *Create project*:
 
 Once the project finishes syncing, create the *job_template* in Ansible Automation Platform with the project name _redhat-aap-extra-vars-eda_:
-
++
 [source,bash]
 ----
 Name: redhat-aap-extra-vars-eda
@@ -228,14 +213,14 @@ image::lab003-add006.jpg[lab003-add006,100%,100%,link=self,window=_blank]
 
 == Now in Automation Decisions (Event-Driven) create the credential:
 
-To create the credential, select menu:Automation Decisions[Infrastructure > Credentials > Create credential]:
-
+- To create the credential, select menu:Automation Decisions[Infrastructure > Credentials > Create credential]:
++
 image::lab003-017.jpg[lab003-017,100%,100%,link=self,window=_blank]
 
-Now add the credential information:
-
+- Now add the credential information:
++
 image::lab003-018.jpg[lab003-018,100%,100%,link=self,window=_blank]
-
++
 [source,bash]
 ----
 Name: gitlab 
@@ -245,14 +230,13 @@ Username: root
 Password: redhat..123
 
 ----
-Create the project in Event-Driven:
-
-Select Automation Decisions > Projects and Click btn:[Create project]:
-
+- Create the project in Event-Driven:
+.. Select `Automation Decisions > Projects and Click on *Create project*:
++
 image::lab003-021.jpg[lab003-021,100%,100%,link=self,window=_blank]
 
-Create the project with the following information:
-
+- Create the project with the following information:
++
 [source,bash]
 ----
 Name: redhat-aap-extra-vars-eda 
@@ -262,24 +246,24 @@ Source control URL: https://server.example.com/root/redhat-aap-extra-vars-eda.gi
 Source control credential: gitlab
 Disable verify SSL: Uncheck
 ----
-
-NOTE: The project does not sync. Find the error and resolve.
-
++ 
 image::lab003-020.jpg[lab003-020,100%,100%,link=self,window=_blank]
 
-NOTE: Import error: The 'extensions/eda/rulebooks' or 'rulebooks' directory doesn't exist within the project root.
+ NOTE: 
+ - The project does not sync. Find the error and resolve.
+ -  Import error: The 'extensions/eda/rulebooks' or 'rulebooks' directory doesn't exist within the project root.
 
 image::lab003-024.jpg[lab003-024,100%,100%,link=self,window=_blank]
 
 Next, under Automation Decisions > Infrastructure > Credentials, click Create credential
 
-Click btn:[Create credential]:
+- Click on *Create credential*:
 
 image::lab003-017.jpg[lab003-017,100%,100%,link=self,window=_blank]
 
 image::lab003-018.jpg[lab003-018,100%,100%,link=self,window=_blank]
 
-Now add, the following to your credential:
+- Now add, the following to your credential:
 
 [source,bash]
 ----
@@ -291,13 +275,13 @@ Username: admin
 Password: R3dh4t1!
 ----
 
-Click btn:[Create credential]:
+- Click on *Create credential*:
 
 image::lab003-027.jpg[lab003-027,100%,100%,link=self,window=_blank]
 
-Create credential registry Red Hat.
+- Create credential registry Red Hat.
 
-Click in btn:[Create credential] in Automation Decisions:
+- Click in on *Create credential* in Automation Decisions:
 
 image::lab003-add007.png[lab003-add007,100%,100%,link=self,window=_blank]
 
@@ -307,32 +291,32 @@ Name: redhat
 Organization: Default
 Credential type: Container Registry
 authentication URL: registry.redhat.io
-username: 1979710|redhatlab20
-Password or Token: (The token is located in /home/ec2-user/03-lab/registry-credentials.txt one node1)
+username: <your-Redhat-login>
+Password or Token: <Your-RedHat-password>
 ----
 
 image::lab003-add008.png[lab003-add008,100%,100%,link=self,window=_blank]
 
 Now edit Decision Environments:
 
-Click the three dots, then btn:[Edit decision environment].
+- Click the three dots, then on *Edit decision environment*.
 
 image::lab003-add009.png[lab003-add009,100%,100%,link=self,window=_blank]
 
 image::lab003-add010.png[lab003-add010,100%,100%,link=self,window=_blank]
 
-In credential, add *redhat*.
+- In credential, add *redhat*.
 
 image::lab003-add011.png[lab003-add011,100%,100%,link=self,window=_blank]
 
-Click btn:[Save Decision Environment].
+- Click on *Save Decision Environment*.
 
 
 Now create the Rulebook:
 
 NOTE: The Rulebook will not be able to be located. You need to resolve this issue.
 
-Under Automation Decisions > Rulebook Activations, click btn:[Create rulebook activation]:
+Under Automation Decisions > Rulebook Activations, click on [Create rulebook activation]:
 
 [source,bash]
 ----
@@ -349,26 +333,26 @@ image::lab003-025.jpg[lab003-025,100%,100%,link=self,window=_blank]
 
 image::lab003-028.jpg[lab003-028,100%,100%,link=self,window=_blank]
 
-Click btn:[Create rulebook activation]
+- Click on [Create rulebook activation]
 
 Now the activation should show as *Running*:
 
 image::lab003-032.jpg[lab003-032,100%,100%,link=self,window=_blank]
 
-Click the rulebook: _redhat-aap-extra-vars-eda_
+- Click the rulebook: _redhat-aap-extra-vars-eda_
 
 image::lab003-033.jpg[lab003-033,100%,100%,link=self,window=_blank]
 
-Next go to the btn:[History] tab:
+- Next go to the on [History] tab:
 
 image::lab003-034.jpg[lab003-034,100%,100%,link=self,window=_blank]
 
-Click the rulebook that is in Running:
+- Click the rulebook that is in Running:
 
 image::lab003-035.jpg[lab003-035,100%,100%,link=self,window=_blank]
 
 
-Now send the *curl* to this rulebook:
+- Now send the *curl* to this rulebook:
 
 
 [source,sh,role=execute]
