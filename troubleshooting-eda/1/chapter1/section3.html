@@ -139,15 +139,15 @@
 <div class="listingblock execute">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">ssh node1
-ls -lha .ssh/
-cat .ssh/n66g5key.pub # (Change to your ssh pub key)</code></pre>
+ls -lha ~/.ssh/
+cat ~/.ssh/n66g5key.pub # (Change to your ssh pub key)</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Output</div>
 <div class="content">
 <pre>[lab-user@bastion ~]$ ssh node1
-[ec2-user@node1 ~]$ ls -lha .ssh/
+[ec2-user@node1 ~]$ ls -lha ~/.ssh/
 total 36K
 drwx------.  2 ec2-user ec2-user  157 Nov 26 14:23 .
 drwx------. 10 ec2-user ec2-user 4.0K Nov 26 14:05 ..
@@ -159,7 +159,7 @@ drwx------. 10 ec2-user ec2-user 4.0K Nov 26 14:05 ..
 -rw-------.  1 ec2-user ec2-user  913 Nov 26 14:21 known_hosts.old
 -r--------.  1 ec2-user ec2-user 2.6K Nov 26 14:22 n66g5key.pem
 -r--------.  1 ec2-user ec2-user  552 Nov 26 14:22 n66g5key.pub
-[ec2-user@node1 ~]$ cat .ssh/n66g5key.pub (Change to your ssh pub key)</pre>
+[ec2-user@node1 ~]$ cat ~/.ssh/n66g5key.pub (Change to your ssh pub key)</pre>
 </div>
 </div>
 <div class="ulist">
@@ -576,8 +576,8 @@ Disable verify SSL: Uncheck</code></pre>
 Organization: Default
 Credential type: Red Hat Ansible Automation Platform
 Red Hat Ansible Automation Platform: https://controller.example.com/api/controller/
-Username: admin
-Password: R3dh4t1!</code></pre>
+Username: lab-user
+Password: &lt;provide-lab-user-password-from-RHDP-login-page&gt;</code></pre>
 </div>
 </div>
 <div class="ulist">
