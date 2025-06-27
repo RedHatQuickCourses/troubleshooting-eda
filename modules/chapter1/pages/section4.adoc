@@ -48,7 +48,7 @@ image::lab004-005.jpg[lab004-005,100%,100%,link=self,window=_blank]
 
 image::lab004-006.jpg[lab004-006,100%,100%,link=self,window=_blank]
 
-- Next, add another template. On the Templates line, Click on [Select]:
+- Next, add another template. On the Templates line, Click on *Select*:
 
 image::lab004-007.jpg[lab004-007,100%,100%,link=self,window=_blank]
 
@@ -60,7 +60,7 @@ image::lab004-008.jpg[lab004-008,100%,100%,link=self,window=_blank]
 
 image::lab004-009.jpg[lab004-009,100%,100%,link=self,window=_blank]
 
-- In Host groups, click on [Select] and select __Applications__
+- In Host groups, click on *Select* and select __Applications__
 
 image::lab004-010.jpg[lab004-010,100%,100%,link=self,window=_blank]
 
@@ -90,20 +90,20 @@ image::lab004-014.jpg[lab004-014,100%,100%,link=self,window=_blank]
 image::lab004-015.jpg[lab004-015,100%,100%,link=self,window=_blank]
 
 Next, configure Zabbix to send events to Event-Driven: 
-Alerts  > Actions  > Trigger actions. 
+Alerts  -> Actions  -> Trigger actions. 
 For Enable Report problems to Zabbix administrators:, there is a "Disabled" link on the far right under the Status column that you need to click to Enable it. The following two screenshots show the before and after of changing this setting.
 
 image::lab004-016.jpg[lab004-016,100%,100%,link=self,window=_blank]
 
 image::lab004-017.jpg[lab004-017,100%,100%,link=self,window=_blank]
 
-- Let's enable the Media Type:
+- Let's enable the *Media Type*:
 
 menu:Alerts[Media Type > Event Driven Ansible]. Click __Disabled__, and it will change to __Enabled__:
 
 image::lab004-018.jpg[lab004-018,100%,100%,link=self,window=_blank]
 
-- Now go to: menu:Users[Users].
+- Now go to: menu -> Users -> *Users*.
 
 image::lab004-020.jpg[lab004-020,100%,100%,link=self,window=_blank]
 
@@ -148,7 +148,7 @@ Last login: Thu Nov 21 14:12:38 2024 from 192.168.0.144
 
 ----
 
-- In this example the IP: 192.168.0.131:**5000**
+- In this example the ` IP: 192.168.0.131:**5000** `
 
 - Now add the IP of the controller and the Rulebook port of **5000** in the __Send to__ field:
 
@@ -193,8 +193,8 @@ git add . ; git commit -m add ; git push
 
 - Login to Ansible Automation Platform. 
 
-- First, create the project in menu:Automation Decisions[Projects]:
-Click on [Create project], create the project with the following information:
+- First, create the project in menu -> Automation Decisions -> *Projects*:
+Click on *Create project*, create the project with the following information:
 
 image::lab004-026.jpg[lab004-026,100%,100%,link=self,window=_blank]
 
@@ -216,7 +216,7 @@ image::lab004-028.jpg[lab004-028,100%,100%,link=self,window=_blank]
 
 image::lab004-030.jpg[lab004-030,100%,100%,link=self,window=_blank]
 
-.. Click on menu:Automation Decisions[Rulebook Activations] and then click on [Create rulebook activation]:
+.. Click on menu -> Automation Decisions -> *Rulebook Activations* and then click on *Create rulebook activation*:
 
 [source,bash]
 ----
