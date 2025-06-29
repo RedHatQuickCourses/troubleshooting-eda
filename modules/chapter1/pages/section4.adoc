@@ -19,7 +19,7 @@ Pass: zabbix
 
 image::lab004-001.jpg[lab004-001,100%,100%,link=self,window=_blank]
 
-- Go to menu:Monitoring[Hosts]:
+- Go to menu --> Monitoring --> Hosts:
 
 - Click on *Create host*:
 
@@ -72,7 +72,7 @@ image::lab004-011.jpg[lab004-011,100%,100%,link=self,window=_blank]
 
 image::lab004-012.jpg[lab004-012,100%,100%,link=self,window=_blank]
 
-- Add (in bold) __node1.example.com__  to the DNS name field:
+- Add *node1.example.com*  to the DNS name field:
 
 [source,bash]
 ----
@@ -99,7 +99,7 @@ image::lab004-017.jpg[lab004-017,100%,100%,link=self,window=_blank]
 
 - Let's enable the *Media Type*:
 
-menu:Alerts[Media Type > Event Driven Ansible]. Click __Disabled__, and it will change to __Enabled__:
+menu --> Alerts --> Media Type --> Event Driven Ansible. Click __Disabled__, and it will change to __Enabled__:
 
 image::lab004-018.jpg[lab004-018,100%,100%,link=self,window=_blank]
 
