@@ -34,11 +34,11 @@ drwx------. 10 ec2-user ec2-user 4.0K Nov 26 14:05 ..
 [ec2-user@node1 ~]$ cat ~/.ssh/n66g5key.pub (Change to your ssh pub key)
 ----
 
-- Copy the contents of the public key and add it to this link. To do this you will need to hold the kbd:[Shift] key, and then highlight the key and right click to copy.
+- Copy the contents of the public key and add it to this link. To do this you will need to hold the *Shift* key, and then highlight the key and right click to copy.
 
 image::lab003-git.png[lab003-git,100%,100%,link=self,window=_blank]
 
-- Go to User Settings / Preferences / SSH keys
+- Go to User Settings --> Preferences --> SSH keys
 
 image::lab003-git002.png[lab003-git002,100%,100%,link=self,window=_blank]
 
@@ -95,7 +95,7 @@ git push
 
 - Login to Ansible Auotomaton Platform using the information provided on the RHDP page. 
 
-- Create the inventory. Select menu:Automation Execution[Infrastructure > Inventories].
+- Create the inventory. Select menu --> Automation Execution --> Infrastructure --> Inventories.
 
 - To create the inventory, click on *Create inventory* in blue.
 
@@ -111,7 +111,7 @@ Organization: Default
 image::lab003-002.jpg[lab003-002,100%,100%,link=self,window=_blank]
 
 - Now click on *Create inventory*:
-.. To add a host to the inventory, click the on [Hosts] tab. 
+.. To add a host to the inventory, click the on *Hosts* tab. 
 +
 image::lab003-003.jpg[lab003-003,100%,100%,link=self,window=_blank]
 
@@ -199,7 +199,7 @@ image::lab003-015.jpg[lab003-015,100%,100%,link=self,window=_blank]
 - Now click on *Create project*:
 
 Once the project finishes syncing, create the *job_template* in Ansible Automation Platform with the project name _redhat-aap-extra-vars-eda_:
-+
+
 [source,bash]
 ----
 Name: redhat-aap-extra-vars-eda
@@ -213,7 +213,7 @@ image::lab003-add006.jpg[lab003-add006,100%,100%,link=self,window=_blank]
 
 == Now in Automation Decisions (Event-Driven) create the credential:
 
-- To create the credential, select menu:Automation Decisions[Infrastructure > Credentials > Create credential]:
+- To create the credential, select menu --> Automation Decisions --> Infrastructure --> Credentials --> Create credential :
 +
 image::lab003-017.jpg[lab003-017,100%,100%,link=self,window=_blank]
 
@@ -231,7 +231,7 @@ Password: redhat..123
 
 ----
 - Create the project in Event-Driven:
-.. Select `Automation Decisions > Projects and Click on *Create project*:
+.. Select `Automation Decisions --> Projects and Click on *Create project*:
 +
 image::lab003-021.jpg[lab003-021,100%,100%,link=self,window=_blank]
 
@@ -316,7 +316,7 @@ Now create the Rulebook:
 
 NOTE: The Rulebook will not be able to be located. You need to resolve this issue.
 
-Under Automation Decisions > Rulebook Activations, click on [Create rulebook activation]:
+Under Automation Decisions --> Rulebook Activations click on --> Create rulebook activation:
 
 [source,bash]
 ----
@@ -333,7 +333,7 @@ image::lab003-025.jpg[lab003-025,100%,100%,link=self,window=_blank]
 
 image::lab003-028.jpg[lab003-028,100%,100%,link=self,window=_blank]
 
-- Click on [Create rulebook activation]
+- Click on *Create rulebook activation*
 
 Now the activation should show as *Running*:
 
@@ -343,7 +343,7 @@ image::lab003-032.jpg[lab003-032,100%,100%,link=self,window=_blank]
 
 image::lab003-033.jpg[lab003-033,100%,100%,link=self,window=_blank]
 
-- Next go to the on [History] tab:
+- Next go to the on *History* tab:
 
 image::lab003-034.jpg[lab003-034,100%,100%,link=self,window=_blank]
 
