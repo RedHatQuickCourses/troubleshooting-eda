@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Product Enablement: Event-Driven Ansible Troubleshooting Lab :: Product Enablement: Event-Driven Ansible Troubleshooting Lab</title>
+    <link rel="prev" href="../LABENV/index.html">
+    <link rel="next" href="section1.html">
+    <meta name="generator" content="Antora 3.1.3">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.redhat.com" target="_blank"><img src="../../../_/img/redhat-logo.png" height="40px" alt="Red Hat"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="../../..">Product Enablement: Event-Driven Ansible Troubleshooting Lab</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://github.com/RedHatQuickCourses/troubleshooting-eda/issues" target="_blank">Report Issues</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="troubleshooting-eda" data-version="1">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Product Enablement: Event-Driven Ansible Troubleshooting Lab</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Home</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../LABENV/index.html">Lab Environment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Product Enablement: Event-Driven Ansible Troubleshooting Lab</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section1.html">Troubleshooting the Rulebook Using CURL</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section2.html">Troubleshoot Rulebook Using CURL and extra_vars</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section3.html">Configure Event-Driven to Pass Extra Variables to Ansible Automation Platform</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section4.html">Configure Event-Driven to Pass Extra Variables to Ansible Automation Platform</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section5.html">Let&#8217;s configure Event-Driven and Ansible Automation Platform to fix issues coming from Zabbix</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../appendix/appendix.html">Appendix</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Product Enablement: Event-Driven Ansible Troubleshooting Lab</span>
+    <span class="version">1</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">Product Enablement: Event-Driven Ansible Troubleshooting Lab</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">1</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Product Enablement: Event-Driven Ansible Troubleshooting Lab</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Product Enablement: Event-Driven Ansible Troubleshooting Lab</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Welcome to the <strong>Troubleshooting Event-Driven Ansible in Ansible Automation Platform</strong> lab. In this session, we will work with Ansible Automation Platform 2.5, GitLab, and a Zabbix Server.</p>
+</div>
+<div class="paragraph">
+<p>There are sections 1 through 5 containing issues that need to be identified and resolved. There are multiple issues that you will be learning about including where Zabbix will monitor <code>node1</code>, and we will simulate an alert by stopping the Apache server. This alert will be sent to Event-Driven Ansible (Automation Decisions), which will use the Ansible <code>job template</code> to resolve the detected issues without any human intervention. Several configuration changes will be required in the environment to achieve this outcome.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_lab_access"><a class="anchor" href="#_lab_access"></a>Lab Access</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Login from your system using 2 new Terminal and access the <strong>bastion</strong> node as the <code>Username</code> and <code>Password</code> mentioned on the RHDP platform login page.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>ec2-user</code> is the primary user account provisioned on controller, <code>node1</code>, and <code>server</code>. From the bastion host, the <code>lab-user</code> connects to all hosts by utilizing the ssh key of the ec2-user.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>All the information related to the login details is mentioned on the RHDP LAB Deployment web page.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_access_other_instances_from_bastion"><a class="anchor" href="#_access_other_instances_from_bastion"></a>Access other instances from Bastion</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Passwordless authentication is already setup so to Log in to the Ansible Automation Platform Controller from the <strong>bastion</strong> host:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>[lab-user@bastion ~]$ ssh controller</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Log in to <strong>node1</strong> from <strong>bastion</strong>:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>[lab-user@bastion ~]$ ssh node1</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Log in to the additional <strong>server</strong> from <strong>bastion</strong>:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>[lab-user@bastion ~]$ ssh server</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_solution"><a class="anchor" href="#_solution"></a>Solution</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>A step-by-step guided solution is provided at the end of each lab section.</p>
+</li>
+<li>
+<p>Before proceeding with the solution, take a moment to try the challenge on your own. Your effort to troubleshoot independently will help you gain confidence while working on other issues in the future.</p>
+</li>
+<li>
+<p>Once you have made an attempt, you can refer to the guided solutions to verify your approach or explore an alternate solution.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="../LABENV/index.html">Lab Environment</a></span>
+  <span class="next"><a href="section1.html">Troubleshooting the Rulebook Using CURL</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <img src="../../../_/img/rhl-logo-red.png" height="40px" alt="Red Hat"  href="https://redhat.com" >
+</footer><script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
