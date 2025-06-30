@@ -255,7 +255,7 @@ sudo systemctl stop httpd
 
 We will be able to see the Apache alert being sent to Event-Driven on the Zabbix dashboard:
 
- NOTE: It takes about 30 seconds and a browser refresh to show it under Actions and The red line under Actions in the Current Problems section. This is a failure you must clear.
+NOTE: It takes about 30 seconds and a browser refresh to show it under Actions and The red line under Actions in the Current Problems section. This is a failure you must clear.
 
 image::lab004-034.jpg[lab004-034,100%,100%,link=self,window=_blank]
 

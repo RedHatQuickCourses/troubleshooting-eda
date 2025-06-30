@@ -136,7 +136,7 @@ NOTE: "Failed to connect to the host via ssh:" You will need to use the access k
 [#guided_solution]
 == Guided solution
 
-. Note the error generated after the event is captured by the `ansible-rulebook` command
+. The error generated after the event is captured by the `ansible-rulebook` command
 +
 .Output
 ----

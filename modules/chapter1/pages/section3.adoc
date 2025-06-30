@@ -131,7 +131,7 @@ Next, create the _ec2-user_ user credential in Ansible Automation Platform.
 
 The environment referenced in the lab document is using __.ssh/vkhtjkey.pem__ as the SSH key. Your key will be named differently. 
 
- NOTE: To validate your private key:
+NOTE: To validate your private key:
 
 [source,bash]
 ----
@@ -249,7 +249,7 @@ Disable verify SSL: Uncheck
 + 
 image::lab003-020.jpg[lab003-020,100%,100%,link=self,window=_blank]
 
- NOTE: 
+NOTE: 
  - The project does not sync. Find the error and resolve it.
  -  Import error: The 'extensions/eda/rulebooks' or 'rulebooks' directory doesn't exist within the project root.
 

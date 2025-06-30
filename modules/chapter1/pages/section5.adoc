@@ -4,6 +4,7 @@
 == What is in this break-fix
 
 In this section, we will configure Zabbix to monitor *node1*. On *node1*, Apache is running. When Apache stops working, Zabbix sends an event to Event-Driven Ansible (Automation Decisions) and runs a job template to solve the problem.
+
 == Add the playbook and rulebook to git
 
 - Add the files inside this folder to git.
@@ -50,7 +51,7 @@ image::lab005-000.jpg[lab005-000,100%,100%,link=self,window=_blank]
 
 - After creating the project in Automation Decision, create the rulebook.
 
-- Click on [Create rulebook activation]:
+- Click on *Create rulebook activation*:
 
 image::lab005-004.jpg[lab005-004,100%,100%,link=self,window=_blank]
 
@@ -68,9 +69,10 @@ Log Level: Debug
 Now click on Create rulebook activation
 ----
 
+NOTE: The _webhook-zabbix.yml_ file will not show in Event-Driven. Fix the issue with the `webhook-zabbix.yml` before proceeding.
+
 image::lab005-005.jpg[lab005-005,100%,100%,link=self,window=_blank]
 
-NOTE: The _webhook-zabbix.yml_ file will not show in Event-Driven. Fix this before moving on.
 
 - Now, click on *Create rulebook activation*.
 
@@ -103,7 +105,7 @@ image::lab005-013.jpg[lab005-013,100%,100%,link=self,window=_blank]
 
  NOTE: The big problem is creating the correct regular expression for the payload to run.
 
-- Now it's time to edit the _05-lab/redhat-ansible-eda-vars-zabbix/rulebooks/webhook-zabbix.yml_ file and find the correct expression.
+- Now it's time to edit the *05-lab/redhat-ansible-eda-vars-zabbix/rulebooks/webhook-zabbix.yml* file and find the correct expression.
 
 
 [source,yml]
@@ -251,7 +253,7 @@ NOTE: The success of this lab is that Ansible starts HTTPD on *node1* with a Zab
 [#guided_solution]
 == Guided solution
 
-. First, you will need to disable the eda-debug rulebook under Automation Decisions > Rulebook Activations. 
+. First, you will need to disable the eda-debug rulebook under Automation Decisions --> Rulebook Activations. 
 
 . Next, after creating a new "project-http" inventory and adding localhost as a new host under the Hosts tab, remember to put localhost into disabled mode for this new inventory.
 
