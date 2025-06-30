@@ -9,6 +9,7 @@ There are sections 1 through 5 containing issues that need to be identified and 
 Login from your system using 2 new Terminal and access the *bastion* node as the `Username` and `Password` mentioned on the RHDP platform login page.  
 
 NOTE: 
+
  - The `ec2-user` is the primary user account provisioned on controller, `node1`, and `server`. From the bastion host, the `lab-user` connects to all hosts by utilizing the ssh key of the ec2-user.
  - The `lab-user` and the `admin` user both have a `System administrator` access on the Ansible Automation platform. 
 
