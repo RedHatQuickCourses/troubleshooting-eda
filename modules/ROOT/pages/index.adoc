@@ -24,3 +24,14 @@ The PTL team acknowledges the valuable contributions of the following Red Hat as
 
 - Amrinder Singh (Content Architect)
 - Rutuja Deshmukh (Editor)
+
+== Audience
+
+- Solution Architects
+- Automation Architects & Consultant
+- Technical Account Manager (TAM)
+
+== Prerequisite
+
+- Intermediate knowledge of Ansible, Ansible Automation Platform, and Event-Driven Automation.
+

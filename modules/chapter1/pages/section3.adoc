@@ -142,8 +142,8 @@ drwxr-xr-x. 8 lab-user lab-user 4.0K Nov 19 12:41 ..
 -rw-------. 1 lab-user lab-user 2.4K Nov 19 13:10 authorized_keys
 -r--------. 1 lab-user root      216 Nov 19 01:40 config
 -rw-r--r--. 1 lab-user lab-user  374 Nov 19 12:41 known_hosts
--r--------. 1 lab-user root     2.6K Nov 19 01:40 wlffskey.pem
--r--------. 1 lab-user root      552 Nov 19 01:40 wlffskey.pub
+-r--------. 1 lab-user root     2.6K Nov 19 01:40 vkhtjkey.pem
+-r--------. 1 lab-user root      552 Nov 19 01:40 vkhtjkey.pub
 [lab-user@bastion ~]$ 
 [lab-user@bastion ~]$ cat .ssh/vkhtjkey.pem 
 ----
@@ -231,7 +231,7 @@ Password: redhat..123
 
 ----
 - Create the project in Event-Driven:
-.. Select `Automation Decisions --> Projects and Click on *Create project*:
+.. Select Automation Decisions --> Projects and Click on *Create project*:
 +
 image::lab003-021.jpg[lab003-021,100%,100%,link=self,window=_blank]
 
