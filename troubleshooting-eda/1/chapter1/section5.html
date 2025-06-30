@@ -126,9 +126,13 @@
 <h2 id="in_this_bfx"><a class="anchor" href="#in_this_bfx"></a>What is in this break-fix</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In this section, we will configure Zabbix to monitor <strong>node1</strong>. On <strong>node1</strong>, Apache is running. When Apache stops working, Zabbix sends an event to Event-Driven Ansible (Automation Decisions) and runs a job template to solve the problem.
-== Add the playbook and rulebook to git</p>
+<p>In this section, we will configure Zabbix to monitor <strong>node1</strong>. On <strong>node1</strong>, Apache is running. When Apache stops working, Zabbix sends an event to Event-Driven Ansible (Automation Decisions) and runs a job template to solve the problem.</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_add_the_playbook_and_rulebook_to_git"><a class="anchor" href="#_add_the_playbook_and_rulebook_to_git"></a>Add the playbook and rulebook to git</h2>
+<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
@@ -197,7 +201,7 @@ uncheck box Verify SSL</code></pre>
 <p>After creating the project in Automation Decision, create the rulebook.</p>
 </li>
 <li>
-<p>Click on [Create rulebook activation]:</p>
+<p>Click on <strong>Create rulebook activation</strong>:</p>
 </li>
 </ul>
 </div>
@@ -221,11 +225,6 @@ Log Level: Debug
 Now click on Create rulebook activation</code></pre>
 </div>
 </div>
-<div class="imageblock">
-<div class="content">
-<a class="image" href="_images/lab005-005.jpg" target="_blank" rel="noopener"><img src="_images/lab005-005.jpg" alt="lab005-005" width="100%" height="100%"></a>
-</div>
-</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -233,10 +232,15 @@ Now click on Create rulebook activation</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The <em>webhook-zabbix.yml</em> file will not show in Event-Driven. Fix this before moving on.
+The <em>webhook-zabbix.yml</em> file will not show in Event-Driven. Fix the issue with the <code>webhook-zabbix.yml</code> before proceeding.
 </td>
 </tr>
 </table>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="_images/lab005-005.jpg" target="_blank" rel="noopener"><img src="_images/lab005-005.jpg" alt="lab005-005" width="100%" height="100%"></a>
+</div>
 </div>
 <div class="ulist">
 <ul>
@@ -325,7 +329,7 @@ The <em>webhook-zabbix.yml</em> file will not show in Event-Driven. Fix this bef
 <div class="ulist">
 <ul>
 <li>
-<p>Now it&#8217;s time to edit the <em>05-lab/redhat-ansible-eda-vars-zabbix/rulebooks/webhook-zabbix.yml</em> file and find the correct expression.</p>
+<p>Now it&#8217;s time to edit the <strong>05-lab/redhat-ansible-eda-vars-zabbix/rulebooks/webhook-zabbix.yml</strong> file and find the correct expression.</p>
 </li>
 </ul>
 </div>
@@ -584,7 +588,7 @@ The success of this lab is that Ansible starts HTTPD on <strong>node1</strong> w
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>First, you will need to disable the eda-debug rulebook under under Automation Decisions &gt; Rulebook Activations.</p>
+<p>First, you will need to disable the eda-debug rulebook under under Automation Decisions -&#8594; Rulebook Activations.</p>
 </li>
 <li>
 <p>Next, after creating a new "project-http" inventory and adding localhost as a new host under the Hosts tab, remember to put localhost into disabled mode for this new inventory.</p>
