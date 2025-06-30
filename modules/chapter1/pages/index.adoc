@@ -2,19 +2,19 @@
 
 Welcome to the *Troubleshooting Event-Driven Ansible in Ansible Automation Platform* lab. In this session, we will work with Ansible Automation Platform 2.5, GitLab, and a Zabbix Server. 
 
-There are section 1 through 5 containing issues that needs to be identified and resolved. There are multiple issues that you will be leraning about including where Zabbix will monitor `node1`, and we will simulate an alert by stopping Apache server. This alert will be sent to Event-Driven Ansible (Automation Decisions), which will use Ansible `job template` to resolve the detected issues without any human intervention. Several configuration changes will be required in the environment to achieve this outcome.
+There are sections 1 through 5 containing issues that need to be identified and resolved. There are multiple issues that you will be learning about including where Zabbix will monitor `node1`, and we will simulate an alert by stopping the Apache server. This alert will be sent to Event-Driven Ansible (Automation Decisions), which will use the Ansible `job template` to resolve the detected issues without any human intervention. Several configuration changes will be required in the environment to achieve this outcome.
 
 == Lab Access
 
-Login from your system using 2 new Terminal's and access the *bastion* node as the `Username` and `Password` mentioned on the RHDP platform login page.  
+Login from your system using 2 new Terminal and access the *bastion* node as the `Username` and `Password` mentioned on the RHDP platform login page.  
 
 NOTE: The `ec2-user` is the primary user account provisioned on controller, `node1`, and `server`. From the bastion host, the `lab-user` connects to all hosts by utilizing the ssh key of the ec2-user.
 
-All the informaiton related to the login details are mentioend on the RHDP LAB Deployment web-page.
+All the information related to the login details is mentioned on the RHDP LAB Deployment web page.
 
 == Access other instances from Bastion
 
-* Passwordless authentication is alredy setup so to Log in to the Ansible Automation Platform Controller from the *bastion* host:
+* Passwordless authentication is already setup so to Log in to the Ansible Automation Platform Controller from the *bastion* host:
 
 [subs=attributes+]
 ----
@@ -39,6 +39,6 @@ All the informaiton related to the login details are mentioend on the RHDP LAB D
 
 - A step-by-step guided solution is provided at the end of each lab section. 
 
-- Before proceeding with solution, take a moment to try the challenge on your own. Your effort to troubleshoot independently will help you gain a confidence while working on other issues in future. 
+- Before proceeding with the solution, take a moment to try the challenge on your own. Your effort to troubleshoot independently will help you gain confidence while working on other issues in the future. 
 
 - Once you have made an attempt, you can refer to the guided solutions to verify your approach or explore an alternate solution.

@@ -1,4 +1,4 @@
-= Configure Event-Driven to pass extra variables to Ansible Automation Platform
+= Configure Event-Driven to Pass Extra Variables to Ansible Automation Platform
 
 [#in_this_bfx]
 == What is in this break-fix
@@ -193,8 +193,8 @@ git add . ; git commit -m add ; git push
 
 - Login to Ansible Automation Platform. 
 
-- First, create the project in menu -> Automation Decisions -> *Projects*:
-Click on *Create project*, create the project with the following information:
+- First, create the project in the menu -> Automation Decisions -> *Projects*:
+Click on *Create project*, and create the project with the following information:
 
 image::lab004-026.jpg[lab004-026,100%,100%,link=self,window=_blank]
 

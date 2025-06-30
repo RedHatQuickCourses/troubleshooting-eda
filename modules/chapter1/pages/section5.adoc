@@ -185,7 +185,7 @@ Name: localhost
 
 image::lab005-017.jpg[lab005-017,100%,100%,link=self,window=_blank]
 
-- Next click on *Create Host*:
+- Next, click on *Create Host*:
 
 - Create the job template:
 .. In Automation Execution section in menu:Templates[Create Template > Create Job Template]:
@@ -208,7 +208,7 @@ Inventory: project-http
 
  NOTE: To generate new alerts we need to start and stop *httpd*.
 
-- Next stop the server's *httpd*:
+- Next, stop the server's *httpd*:
 
 [source,bash]
 ----
@@ -253,7 +253,7 @@ NOTE: The success of this lab is that Ansible starts HTTPD on *node1* with a Zab
 [#guided_solution]
 == Guided solution
 
-. First, you will need to disable the eda-debug rulebook under under Automation Decisions --> Rulebook Activations. 
+. First, you will need to disable the eda-debug rulebook under Automation Decisions --> Rulebook Activations. 
 
 . Next, after creating a new "project-http" inventory and adding localhost as a new host under the Hosts tab, remember to put localhost into disabled mode for this new inventory.
 

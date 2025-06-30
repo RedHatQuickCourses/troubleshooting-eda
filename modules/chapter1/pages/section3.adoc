@@ -1,4 +1,4 @@
-= Configure Event-Driven to pass extra variables to Ansible Automation Platform
+= Configure Event-Driven to Pass Extra Variables to Ansible Automation Platform
 
 [#in_this_bfx]
 == What is in this break-fix
@@ -148,7 +148,7 @@ drwxr-xr-x. 8 lab-user lab-user 4.0K Nov 19 12:41 ..
 [lab-user@bastion ~]$ cat .ssh/vkhtjkey.pem 
 ----
 
-- Copy the contents of the private key and create the machine credential:
+- Copy the contents of the private key, and create the machine credential:
 +
 [source,bash]
 ----
@@ -250,7 +250,7 @@ Disable verify SSL: Uncheck
 image::lab003-020.jpg[lab003-020,100%,100%,link=self,window=_blank]
 
 NOTE: 
- - The project does not sync. Find the error and resolve.
+ - The project does not sync. Find the error and resolve it.
  -  Import error: The 'extensions/eda/rulebooks' or 'rulebooks' directory doesn't exist within the project root.
 
 image::lab003-024.jpg[lab003-024,100%,100%,link=self,window=_blank]
@@ -263,7 +263,7 @@ image::lab003-017.jpg[lab003-017,100%,100%,link=self,window=_blank]
 
 image::lab003-018.jpg[lab003-018,100%,100%,link=self,window=_blank]
 
-- Now add, the following to your credential:
+- Now add, the following to your credentials:
 
 [source,bash]
 ----
@@ -281,7 +281,7 @@ image::lab003-027.jpg[lab003-027,100%,100%,link=self,window=_blank]
 
 - Create credential registry Red Hat.
 
-- Click in on *Create credential* in Automation Decisions:
+- Click on *Create credential* in Automation Decisions:
 
 image::lab003-add007.png[lab003-add007,100%,100%,link=self,window=_blank]
 
@@ -343,7 +343,7 @@ image::lab003-032.jpg[lab003-032,100%,100%,link=self,window=_blank]
 
 image::lab003-033.jpg[lab003-033,100%,100%,link=self,window=_blank]
 
-- Next go to the on *History* tab:
+- Next, go to the *History* tab:
 
 image::lab003-034.jpg[lab003-034,100%,100%,link=self,window=_blank]
 
