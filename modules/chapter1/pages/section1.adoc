@@ -1,4 +1,4 @@
-= Troubleshooting the rulebook using CURL
+= Troubleshooting the Rulebook Using CURL
 :page-attribute: experimental
 
 [#in_this_bfx]
@@ -14,7 +14,7 @@ A rulebook consists of three main components:
 
 * *Rules* define conditionals we will try to match from the event source. Should the condition be met, then we can trigger an action.
 
-* *Actions* trigger what need to happen should a condition be met. Some of the current actions are: __run_playbook__, __run_module__, __set_fact__, __post_event__, and __debug__.
+* *Actions* trigger what needs to happen should a condition be met. Some of the current actions are: __run_playbook__, __run_module__, __set_fact__, __post_event__, and __debug__.
 
 
 Follow the below steps to proceed with the activity:
@@ -110,7 +110,7 @@ ansible-rulebook --rulebook webhook-example.yml -i inventory.yml --verbose  --pr
 
 ----
 
-. With the `ansible-rulebook` running on the `node1` terminal, access the second terminal and run the `curl` command from `bastion` host to proceed.
+. With the `ansible-rulebook` running on the `node1` terminal, access the second terminal and run the `curl` command from the `bastion` host to proceed.
 +
 [source,sh,role=execute]
 ----

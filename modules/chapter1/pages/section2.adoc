@@ -1,4 +1,4 @@
-= Troubleshoot rulebook using CURL and extra_vars
+= Troubleshoot Rulebook Using CURL and extra_vars
 
 [#in_this_bfx]
 == What is in this break-fix
