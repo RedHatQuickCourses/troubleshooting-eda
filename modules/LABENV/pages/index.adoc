@@ -19,7 +19,7 @@ image::form.png[]
 . **Click** the **Order** button to place your lab order.
 
 === Important Notes:
-- This lab may take approximately **20 minutes** to become ready.
+- This lab may take approximately **30 minutes** to become ready.
 - You will receive an **email with access details** once your lab environment is ready.
 - You can also **retrieve lab access** directly from the RHDP portal.
 
