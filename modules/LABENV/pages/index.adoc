@@ -29,6 +29,6 @@ image::form.png[]
 
 [[RHDP-Portal-Links]]
 === RHDP Portal Links
-- RedHat associates: https://demo.redhat.com/[https://demo.redhat.com/,window=_blank]
-- RedHat partners: https://partner.demo.redhat.com/[https://partner.demo.redhat.com/,window=_blank]
+- RedHat associates: https://catalog.demo.redhat.com/catalog?search=Event-Driven+Ansible+Troubleshooting+Lab&item=babylon-catalog-prod%2Fpert.ansible-eda-troubleshooting.prod[https://demo.redhat.com/,window=_blank]
+- RedHat partners: https://catalog.partner.demo.redhat.com/catalog?search=Event-Driven+Ansible+Troubleshooting&item=babylon-catalog-prod%2Fpartner.ansible-eda-troubleshooting.prod[https://partner.demo.redhat.com/,window=_blank]
 
